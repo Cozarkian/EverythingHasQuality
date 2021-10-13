@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LanguageData>
+	<QFramework.Enable>Enable quality for:</QFramework.Enable>
+	<QFramework.Min>Min Quality: </QFramework.Min>
+	<QFramework.Max>Max Quality: </QFramework.Max>
+
+	<QFramework.Work>Work Tables</QFramework.Work>
+	<QFramework.Edifice>Other Buildings and Construction</QFramework.Edifice>
+	<QFramework.Stuff>Stuff and Resources</QFramework.Stuff>
+	<QFramework.Meal>Meals</QFramework.Meal>
+	<QFramework.Ingredients>Crops, Meat, and other Food</QFramework.Ingredients>
+	<QFramework.Drugs>Drugs and Alcohol</QFramework.Drugs>
+	<QFramework.Med>Medicine</QFramework.Med>
+	<QFramework.Manuf>Manufactured Goods</QFramework.Manuf>
+	<QFramework.Shells>Shells and Grenades</QFramework.Shells>
+	
+	<QFramework.Materials>Resources/Ingredients Affect Quality</QFramework.Materials>
+	<QFramework.Tables>Work Tables Affect Quality</QFramework.Tables>
+	<QFramework.Standard>Std Quality: </QFramework.Standard>
+	
+	<QFramework.SkilledAnimals>Skills Affect Quality of Animal Products</QFramework.SkilledAnimals>
+	<QFramework.SkilledButchering>Skills Affect Quality of Meat and Leather</QFramework.SkilledButchering>
+	<QFramework.SkilledHarvesting>Skills Affect Quality of Crops</QFramework.SkilledHarvesting>
+	<QFramework.SkilledMining>Skills Affect Quality of Mined Ore</QFramework.SkilledMining>
+	<QFramework.SkilledStoneCutting>Skills Affect Quality of Stonecutting</QFramework.SkilledStoneCutting>
+	
+	<QFramework.InspiredButchering>Enable butchering inspiration</QFramework.InspiredButchering>
+	<QFramework.InspiredChemistry>Enable chemistry inspiration</QFramework.InspiredChemistry>
+	<QFramework.InspiredConstruction>Enable construction inspiration</QFramework.InspiredConstruction>
+	<QFramework.InspiredCooking>Enable cooking inspiration</QFramework.InspiredCooking>
+	<QFramework.InspiredGathering>Enable animal gathering inspiration</QFramework.InspiredGathering>
+	<QFramework.InspiredHarvesting>Enable harvesting inspiration</QFramework.InspiredHarvesting>
+	<QFramework.InspiredMining>Enable mining inspiration</QFramework.InspiredMining>
+	<QFramework.InspiredStonecutting>Enable stonecutting inspiration</QFramework.InspiredStonecutting>
+</LanguageData>

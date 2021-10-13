@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <InspirationDef>
+    <defName>QF_Inspired_Butchering</defName>
+    <label>inspired butchering</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will produce higher quality cuts of meat and stronger leather for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired butchering).</endMessage>
+    <baseInspectLine>Inspired: Inspired butchering</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Cooking</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Cooking</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Cooking>3</Cooking>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+	
+	<InspirationDef>
+    <defName>QF_Inspired_Chemistry</defName>
+    <label>inspired chemistry</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will produce higher quality drugs and medicines for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired chemistry).</endMessage>
+    <baseInspectLine>Inspired: Inspired chemistry</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Crafting</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Crafting</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Crafting>3</Crafting>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+	
+	<InspirationDef>
+    <defName>QF_Inspired_Construction</defName>
+    <label>inspired construction</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will construct higher quality buildings and work tables for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired construction).</endMessage>
+    <baseInspectLine>Inspired: Inspired construction</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Construction</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Construction</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Construction>3</Construction>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+	
+	<InspirationDef>
+    <defName>QF_Inspired_Cooking</defName>
+    <label>inspired cooking</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will produce better meals for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired cooking).</endMessage>
+    <baseInspectLine>Inspired: Inspired cooking</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Cooking</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Cooking</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Cooking>3</Cooking>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+	
+	<InspirationDef>
+    <defName>QF_Inspired_Gathering</defName>
+    <label>inspired gathering</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will gather higher quality animal products and shear better wool for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired gathering).</endMessage>
+    <baseInspectLine>Inspired: Inspired gathering</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Handling</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Animals</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Animals>3</Animals>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+	
+  <InspirationDef>
+    <defName>QF_Inspired_Harvesting</defName>
+    <label>inspired harvesting</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will harvest higher quality crops for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired harveting).</endMessage>
+    <baseInspectLine>Inspired: Inspired harvesting</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Growing</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Plants</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Plants>3</Plants>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+
+  <InspirationDef>
+    <defName>QF_Inspired_Mining</defName>
+    <label>inspired mining</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will mine higher quality ores for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired mining).</endMessage>
+    <baseInspectLine>Inspired: Inspired mining</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Mining</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Mining</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Mining>3</Mining>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+	
+	<InspirationDef>
+    <defName>QF_Inspired_Stonecutting</defName>
+    <label>inspired stonecutting</label>
+    <baseDurationDays>4</baseDurationDays>
+		<baseCommonality>.5</baseCommonality>
+    <beginLetter>[PAWN_pronoun] will cut higher quality stone blocks for the next 4 days.</beginLetter>
+    <beginLetterDef>PositiveEvent</beginLetterDef>
+    <endMessage>{0} is no longer inspired (inspired stonecutting).</endMessage>
+    <baseInspectLine>Inspired: Inspired stonecutting</baseInspectLine>
+    <requiredAnyNonDisabledWorkType>
+      <li>Crafting</li>
+    </requiredAnyNonDisabledWorkType>
+    <associatedSkills>
+      <li>Crafting</li>
+    </associatedSkills>
+    <requiredAnySkill>
+      <Crafting>3</Crafting>
+    </requiredAnySkill>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </InspirationDef>
+</Defs>

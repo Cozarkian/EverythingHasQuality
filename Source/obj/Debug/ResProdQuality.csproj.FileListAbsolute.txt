@@ -1,0 +1,6 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ResProdQuality\Common\Assemblies\ResProdQuality.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ResProdQuality\Common\Assemblies\ResProdQuality.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ResProdQuality\Source\obj\Debug\ResProdQuality.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ResProdQuality\Source\obj\Debug\ResProdQuality.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ResProdQuality\Source\obj\Debug\ResProdQuality.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ResProdQuality\Source\obj\Debug\ResProdQuality.pdb
