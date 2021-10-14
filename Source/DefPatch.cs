@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using Verse;
 
 namespace QualityFramework
@@ -16,7 +17,7 @@ namespace QualityFramework
                 def = DefDatabase<ThingDef>.AllDefsListForReading[m];
                 if (!def.HasComp(typeof(CompQuality)))
                 {
-                    if (def.IsBuildingArtificial && !def.IsBlueprint)
+                    if (def.IsBuildingArtificial)
                     {
                         if (def.IsWorkTable && ModSettings_QFramework.workQuality)
                         {

@@ -162,6 +162,7 @@ namespace QualityFramework
                 else listingStandard.Gap(24f);
                 if (ModSettings_QFramework.skilledStoneCutting)
                     listingStandard.CheckboxLabeled("QFramework.InspiredStonecutting".Translate(), ref ModSettings_QFramework.inspiredStonecutting);
+                else listingStandard.Gap(24f);
             }
             if (ModSettings_QFramework.drugQuality || ModSettings_QFramework.medQuality)
                 listingStandard.CheckboxLabeled("QFramework.InspiredChemistry".Translate(), ref ModSettings_QFramework.inspiredChemistry);

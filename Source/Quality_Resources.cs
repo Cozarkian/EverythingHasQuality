@@ -87,7 +87,7 @@ namespace QualityFramework
 
         public static void GenerateResourceQuality(Thing thing, Pawn worker, SkillDef relevantSkill)
         {
-            Log.Message("Choosing quality generator");
+            //Log.Message("Choosing quality generator");
             if ((relevantSkill == SkillDefOf.Mining && ModSettings_QFramework.skilledMining) ||
                 (relevantSkill == SkillDefOf.Plants && ModSettings_QFramework.skilledHarvesting) ||
                 (relevantSkill == SkillDefOf.Animals && ModSettings_QFramework.skilledAnimals))
@@ -107,7 +107,7 @@ namespace QualityFramework
             {
                 return;
             }
-            Log.Message("Generating resource quality");
+            //Log.Message("Generating resource quality");
             QualityCategory quality = QualityUtility.GenerateQuality(QualityGenerator.BaseGen);
             compQuality.SetQuality(quality, ArtGenerationContext.Colony);
         }

@@ -80,7 +80,7 @@ namespace QualityFramework
             ThingDef def = thing.def;
             int minQuality = 0;
             if (def.IsWorkTable && !def.IsBlueprint && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minWorkQuality;
-            else if (def.IsBuildingArtificial && ModSettings_QFramework.edificeQuality) minQuality = ModSettings_QFramework.minEdificeQuality;
+            else if (def.building != null && ModSettings_QFramework.edificeQuality) minQuality = ModSettings_QFramework.minEdificeQuality;
             else if (def.IsStuff && ModSettings_QFramework.stuffQuality) minQuality = ModSettings_QFramework.minStuffQuality;
             else if (def.IsDrug && ModSettings_QFramework.drugQuality) minQuality = ModSettings_QFramework.minDrugQuality;
             else if (def.IsMedicine && ModSettings_QFramework.medQuality) minQuality = ModSettings_QFramework.minMedQuality;
@@ -105,7 +105,7 @@ namespace QualityFramework
                 return maxQuality;
             }
             if (def.IsWorkTable && !def.IsBlueprint && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxWorkQuality;
-            else if (def.IsBuildingArtificial && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;
+            else if (def.building != null && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;
             else if (def.IsStuff && ModSettings_QFramework.stuffQuality) maxQuality = ModSettings_QFramework.maxStuffQuality;            
             else if (def.IsDrug && ModSettings_QFramework.drugQuality) maxQuality = ModSettings_QFramework.maxDrugQuality;
             else if (def.IsMedicine && ModSettings_QFramework.medQuality) maxQuality = ModSettings_QFramework.maxMedQuality;
