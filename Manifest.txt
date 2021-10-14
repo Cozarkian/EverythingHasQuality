@@ -1,0 +1,4 @@
+10/13/2021
+Configurable quality for: work tables, other buildings, stuff, meals, food, drugs, and medicine.
+Configurable options for skills/materials to affect quality.
+Configurable options for additional inspirations. 
