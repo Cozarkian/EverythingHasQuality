@@ -100,7 +100,7 @@ namespace QualityFramework
             }
             else if (def.IsWeapon) minQuality = ModSettings_QFramework.minWeaponQuality;
             else if (def.IsApparel) minQuality = ModSettings_QFramework.minApparelQuality;
-            else if ((def.IsShell || (def.IsWeapon && def.category == ThingCategory.Projectile)) && ModSettings_QFramework.shellQuality) minQuality = ModSettings_QFramework.minShellQuality;
+            else if ((def.IsShell || def.IsWithinCategory(ThingCategoryDef.Named("Grenades"))) && ModSettings_QFramework.shellQuality) minQuality = ModSettings_QFramework.minShellQuality;
             return minQuality;
         }
 
@@ -136,7 +136,7 @@ namespace QualityFramework
             }
             else if (def.IsWeapon) maxQuality = ModSettings_QFramework.maxWeaponQuality;
             else if (def.IsApparel) maxQuality = ModSettings_QFramework.maxApparelQuality;
-            else if ((def.IsShell || (def.IsWeapon && def.category == ThingCategory.Projectile)) && ModSettings_QFramework.shellQuality) maxQuality = ModSettings_QFramework.maxShellQuality;
+            else if ((def.IsShell || def.IsWithinCategory(ThingCategoryDef.Named("Grenades"))) && ModSettings_QFramework.shellQuality) maxQuality = ModSettings_QFramework.maxShellQuality;
             return maxQuality;
         }
     }

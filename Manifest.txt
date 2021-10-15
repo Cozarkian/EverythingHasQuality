@@ -1,4 +1,7 @@
-10/13/2021
+[10/15/2021]
+Added options for security/turrets, weapons, apparel, shells/grenades, raw tasty foods.
+
+[10/13/2021]
 Configurable quality for: work tables, other buildings, stuff, meals, food, drugs, and medicine.
 Configurable options for skills/materials to affect quality.
 Configurable options for additional inspirations. 

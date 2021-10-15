@@ -56,9 +56,9 @@ namespace QualityFramework
                             continue;
                         def.comps.Add(comp);
                     }
-                    else if ((def.IsShell || (def.IsWeapon && def.category == ThingCategory.Projectile)) && ModSettings_QFramework.shellQuality)
+                    else if (def.IsShell || def.IsWithinCategory(ThingCategoryDef.Named("Grenades")))
                     {
-                        def.comps.Add(comp);
+                        if (ModSettings_QFramework.shellQuality) def.comps.Add(comp);
                     }
                     else if (def.IsWeapon && ModSettings_QFramework.weaponQuality)
                     {

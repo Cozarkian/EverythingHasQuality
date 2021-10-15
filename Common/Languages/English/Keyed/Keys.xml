@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <LanguageData>
-	<QFramework.Enable>Enable quality for (Restart Required):</QFramework.Enable>
+	<QFramework.Enable>Enable quality for:</QFramework.Enable>
 	<QFramework.Min>Min Quality: </QFramework.Min>
 	<QFramework.Max>Max Quality: </QFramework.Max>
 
+	<QFramework.Frame>Frames (Walls, Doors) and Fences</QFramework.Frame>
 	<QFramework.Work>Work Tables</QFramework.Work>
-	<QFramework.Security>Security and Turrets</QFramework.Security>
+	<QFramework.Power>Power Buildings</QFramework.Power>
+	<QFramework.Security>Security Buildings</QFramework.Security>
 	<QFramework.Edifice>Other Buildings and Construction</QFramework.Edifice>
 	<QFramework.Stuff>Stuff and Resources</QFramework.Stuff>
-	<QFramework.Manuf>Manufactured Goods (e.g. Components)</QFramework.Manuf>
 	<QFramework.Meal>Meals</QFramework.Meal>
 	<QFramework.Ingredients>Crops, Meat, and other Food</QFramework.Ingredients>
-	<QFramework.Tasty>Fruits and other Raw Tasty Foods</QFramework.Tasty>
+	<QFramework.Tasty>Fruit and other Raw Tasty Foods</QFramework.Tasty>
 	<QFramework.Drugs>Drugs and Alcohol</QFramework.Drugs>
 	<QFramework.Med>Medicine</QFramework.Med>
-	<QFramework.Apparel>Apparel (additional to default vanilla)</QFramework.Apparel>
-	<QFramework.Weapons>Weapons (additional to default vanilla)</QFramework.Weapons>
+	<QFramework.Manuf>Manufactured Goods</QFramework.Manuf>
+	<QFramework.Apparel>Apparel (additional to vanilla)</QFramework.Apparel>
+	<QFramework.Weapons>Weapons (additional to vanilla)</QFramework.Weapons>
 	<QFramework.Shells>Shells and Grenades</QFramework.Shells>
 	
 	<QFramework.Materials>Resources/Ingredients Affect Quality</QFramework.Materials>

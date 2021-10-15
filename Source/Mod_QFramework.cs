@@ -48,7 +48,7 @@ namespace QualityFramework
             listingStandard.CheckboxLabeled("    " + "QFramework.Manuf".Translate(), ref ModSettings_QFramework.manufQuality);
             listingStandard.CheckboxLabeled("    " + "QFramework.Meal".Translate(), ref ModSettings_QFramework.mealQuality);
             listingStandard.CheckboxLabeled("    " + "QFramework.Ingredients".Translate(), ref ModSettings_QFramework.ingredientQuality);
-            if (ModSettings_QFramework.ingredientQuality) listingStandard.Label("     " + "QFramework.Tasty".Translate());
+            if (ModSettings_QFramework.ingredientQuality) listingStandard.Label("      " + "QFramework.Tasty".Translate());
             listingStandard.CheckboxLabeled("    " + "QFramework.Drugs".Translate(), ref ModSettings_QFramework.drugQuality);
             listingStandard.CheckboxLabeled("    " + "QFramework.Med".Translate(), ref ModSettings_QFramework.medQuality);
             listingStandard.CheckboxLabeled("    " + "QFramework.Apparel".Translate(), ref ModSettings_QFramework.apparelQuality);
