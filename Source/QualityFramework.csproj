@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mod_SettingsUtility.cs" />
     <Compile Include="InspirationUtility.cs" />
     <Compile Include="Quality_Recipes.cs" />
     <Compile Include="DefOf_QFramework.cs" />

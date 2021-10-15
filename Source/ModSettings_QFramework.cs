@@ -1,9 +1,11 @@
-﻿using Verse;
+﻿using System.Collections.Generic;
+using Verse;
 
 namespace QualityFramework
 {
     public class ModSettings_QFramework : ModSettings
     {
+
         public static bool useMaterialQuality = true;
         public static bool useTableQuality = true;
         public static int stdSupplyQuality = 4;
@@ -77,6 +79,27 @@ namespace QualityFramework
         public static bool shellQuality = false;
         public static int minShellQuality = 0;
         public static int maxShellQuality = 4;
+
+        public static bool indivBuildings = false;
+        public static bool indivWeapons = false;
+        public static bool indivApparel = false;
+        public static bool indivOther = false;
+
+        public static Dictionary<string, bool> bldgDict = new Dictionary<string, bool>();
+        public static List<string> bldgKeys = new List<string>();
+        public static List<bool> bldgValues = new List<bool>();
+
+        public static Dictionary<string, bool> weapDict = new Dictionary<string, bool>();
+        public static List<string> weapKeys = new List<string>();
+        public static List<bool> weapValues = new List<bool>();
+
+        public static Dictionary<string, bool> appDict = new Dictionary<string, bool>();
+        public static List<string> appKeys = new List<string>();
+        public static List<bool> appValues = new List<bool>();
+
+        public static Dictionary<string, bool> otherDict = new Dictionary<string, bool>();
+        public static List<string> otherKeys = new List<string>();
+        public static List<bool> otherValues = new List<bool>();
 
         public override void ExposeData()
         {

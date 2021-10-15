@@ -106,7 +106,7 @@ namespace QualityFramework
 
         public static int GetMaxQuality(Thing thing)
         {
-            //Log.Message("Finding maximum quality");
+            Log.Message("Finding maximum quality");
             ThingDef def = thing.def;
             int maxQuality = 6;
             //Art can always be legendary
@@ -117,7 +117,7 @@ namespace QualityFramework
             if (def.building != null)
             {
                 if (def.IsWorkTable && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxWorkQuality;
-                else if ((def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsSecurity")) || def.building.IsTurret) && ModSettings_QFramework.securityQuality) maxQuality = ModSettings_QFramework.maxSecurityQuality;
+                else if ((def.IsWithinCategory(ThingCategoryDef.Named("BuildingsSecurity")) || def.building.IsTurret) && ModSettings_QFramework.securityQuality) maxQuality = ModSettings_QFramework.maxSecurityQuality;
                 else if (def.building != null && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;
             }
             else if (def.building != null && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;

@@ -17,9 +17,13 @@ namespace QualityFramework
                 def = DefDatabase<ThingDef>.AllDefsListForReading[m];
                 if (!def.HasComp(typeof(CompQuality)))
                 {
-                    if (def.building != null && def.Claimable)
+                    if (def.building != null)
                     {
-                        if (def.IsWorkTable)
+                        if (!def.Claimable || def.IsBlueprint)
+                        {
+                            Log.Message("Skipping " + def.defName);
+                        }
+                        else if (def.IsWorkTable)
                         {
                             if (ModSettings_QFramework.workQuality) def.comps.Add(comp);
                         }
