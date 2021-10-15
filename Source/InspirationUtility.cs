@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 using HarmonyLib;
 
@@ -55,11 +50,11 @@ namespace QualityFramework
             else if (relevantSkill == SkillDefOf.Crafting)
             {
                 if (thingDef.IsDrug || thingDef.IsMedicine) return DefOf_QFramework.QF_Inspired_Chemistry;
-                if (thingDef.IsWithinCategory(ThingCategoryDefOf.StoneBlocks)) return DefOf_QFramework.QF_Inspired_Stonecutting;
+                if (thingDef.thingCategories.Contains(ThingCategoryDefOf.StoneBlocks)) return DefOf_QFramework.QF_Inspired_Stonecutting;
             }
             else if (relevantSkill == SkillDefOf.Cooking)
             {
-                if (thingDef.IsWithinCategory(ThingCategoryDefOf.FoodMeals)) return DefOf_QFramework.QF_Inspired_Cooking;
+                if (thingDef.thingCategories.Contains(ThingCategoryDefOf.FoodMeals)) return DefOf_QFramework.QF_Inspired_Cooking;
                 else if (thingDef.IsMeat || thingDef.IsStuff) return DefOf_QFramework.QF_Inspired_Butchering;
             }
             else if (relevantSkill == SkillDefOf.Animals) return DefOf_QFramework.QF_Inspired_Gathering;

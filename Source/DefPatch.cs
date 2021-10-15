@@ -19,14 +19,11 @@ namespace QualityFramework
                 {
                     if (def.IsBuildingArtificial)
                     {
-                        if (def.IsWorkTable && ModSettings_QFramework.workQuality)
-                        {
-                            def.comps.Add(comp);
-                        }
-                        else if (ModSettings_QFramework.edificeQuality)
-                        {
-                            def.comps.Add(comp);
-                        }
+                        if ((def.IsFrame || def.IsFence) && ModSettings_QFramework.frameQuality) def.comps.Add(comp);
+                        else if (def.IsWorkTable && ModSettings_QFramework.workQuality) def.comps.Add(comp);
+                        else if (def.IsWithinCategory(ThingCategoryDef.Named("BuildingsPower")) && ModSettings_QFramework.workQuality) def.comps.Add(comp);
+                        else if (def.IsWithinCategory(ThingCategoryDef.Named("BuildingsSecurity")) && ModSettings_QFramework.workQuality) def.comps.Add(comp);
+                        else if (ModSettings_QFramework.edificeQuality) def.comps.Add(comp);
                     }
                     else if (def.IsStuff && ModSettings_QFramework.stuffQuality)
                     {
@@ -53,6 +50,14 @@ namespace QualityFramework
                             continue;
                         if (def.IsNutritionGivingIngestible && !ModSettings_QFramework.ingredientQuality)
                             continue;
+                        def.comps.Add(comp);
+                    }
+                    else if (def.IsWeapon && ModSettings_QFramework.weaponQuality)
+                    {
+                        def.comps.Add(comp);
+                    }
+                    else if (def.IsApparel && ModSettings_QFramework.apparelQuality)
+                    {
                         def.comps.Add(comp);
                     }
                     /*else if ((def.IsShell || def.thingCategories.Contains(ThingCategoryDefOf.gren && ModSettings_QualityFramework.shellQuality)

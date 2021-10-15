@@ -48,11 +48,11 @@ namespace QualityFramework
                     }
                     level = Mathf.Clamp(level, 0, 20); //Log.Message("Level with supplies is " + level.ToString());
                 }
-                if (ModSettings_QFramework.lessRandomQuality)
+                /*if (ModSettings_QFramework.lessRandomQuality)
                 {
                     maxQuality = Mathf.Min(maxQuality, Mathf.Max(level - ModSettings_QFramework.minSkillEx + 4, minQuality + 1));
                     minQuality = Mathf.Max(minQuality, Mathf.Min(2, maxQuality - 1, level - ModSettings_QFramework.maxSkillAw));
-                }
+                }*/
                 qualityCategory = QualityUtility.GenerateQualityCreatedByPawn(level, inspired);
                 if (ModsConfig.IdeologyActive && pawn.Ideo != null)
                 {
@@ -79,18 +79,30 @@ namespace QualityFramework
             //Log.Message("Finding minimum quality");
             ThingDef def = thing.def;
             int minQuality = 0;
-            if (def.IsWorkTable && !def.IsBlueprint && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minWorkQuality;
-            else if (def.building != null && ModSettings_QFramework.edificeQuality) minQuality = ModSettings_QFramework.minEdificeQuality;
+            if (def.IsBuildingArtificial)
+            {
+                if ((def.IsFrame || def.IsFence) && ModSettings_QFramework.frameQuality) minQuality = ModSettings_QFramework.minFrameQuality;
+                else if (def.IsWorkTable && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minWorkQuality;
+                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsPower")) && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minPowerQuality;
+                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsSecurity")) && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minSecurityQuality;
+                else if (def.building != null && ModSettings_QFramework.edificeQuality) minQuality = ModSettings_QFramework.minEdificeQuality;
+            }         
             else if (def.IsStuff && ModSettings_QFramework.stuffQuality) minQuality = ModSettings_QFramework.minStuffQuality;
             else if (def.IsDrug && ModSettings_QFramework.drugQuality) minQuality = ModSettings_QFramework.minDrugQuality;
             else if (def.IsMedicine && ModSettings_QFramework.medQuality) minQuality = ModSettings_QFramework.minMedQuality;
-            else if (def.IsWithinCategory(ThingCategoryDefOf.Manufactured)) minQuality = ModSettings_QFramework.minManufQuality;
+            else if (def.thingCategories.Contains(ThingCategoryDefOf.Manufactured)) minQuality = ModSettings_QFramework.minManufQuality;
             else if (def.ingestible != null)
             {
-                if (def.IsWithinCategory(ThingCategoryDefOf.FoodMeals) && ModSettings_QFramework.mealQuality) minQuality = ModSettings_QFramework.minMealQuality;
-                else if (def.IsNutritionGivingIngestible) minQuality = ModSettings_QFramework.minIngQuality;
+                if (def.thingCategories.Contains(ThingCategoryDefOf.FoodMeals) && ModSettings_QFramework.mealQuality) minQuality = ModSettings_QFramework.minMealQuality;
+                else if (def.IsNutritionGivingIngestible)
+                {
+                    if (def.ingestible.preferability == FoodPreferability.RawTasty) minQuality = ModSettings_QFramework.minTastyQuality;
+                    else minQuality = ModSettings_QFramework.minIngQuality;
+                }
             }
-            //else if (def.IsShell && ModSettings_QualityFramework.shellQuality) minQuality = ModSettings_QualityFramework.minShellQuality;
+            else if (def.IsWeapon) minQuality = ModSettings_QFramework.minWeaponQuality;
+            else if (def.IsApparel) minQuality = ModSettings_QFramework.minApparelQuality;
+            else if (def.IsShell && ModSettings_QFramework.shellQuality) minQuality = ModSettings_QFramework.minShellQuality;
             return minQuality;
         }
 
@@ -104,18 +116,31 @@ namespace QualityFramework
             {
                 return maxQuality;
             }
-            if (def.IsWorkTable && !def.IsBlueprint && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxWorkQuality;
+            if (def.IsBuildingArtificial)
+            {
+                if ((def.IsFrame || def.IsFence) && ModSettings_QFramework.frameQuality) maxQuality = ModSettings_QFramework.maxFrameQuality;
+                else if (def.IsWorkTable && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxWorkQuality;
+                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsPower")) && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxPowerQuality;
+                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsSecurity")) && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxSecurityQuality;
+                else if (def.building != null && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;
+            }
             else if (def.building != null && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;
-            else if (def.IsStuff && ModSettings_QFramework.stuffQuality) maxQuality = ModSettings_QFramework.maxStuffQuality;            
+            else if (def.IsStuff && ModSettings_QFramework.stuffQuality) maxQuality = ModSettings_QFramework.maxStuffQuality;
             else if (def.IsDrug && ModSettings_QFramework.drugQuality) maxQuality = ModSettings_QFramework.maxDrugQuality;
             else if (def.IsMedicine && ModSettings_QFramework.medQuality) maxQuality = ModSettings_QFramework.maxMedQuality;
-            else if (def.IsWithinCategory(ThingCategoryDefOf.Manufactured)) maxQuality = ModSettings_QFramework.maxManufQuality;
+            else if (def.thingCategories.Contains(ThingCategoryDefOf.Manufactured)) maxQuality = ModSettings_QFramework.maxManufQuality;
             else if (def.ingestible != null)
             {
                 if (def.thingCategories.Contains(ThingCategoryDefOf.FoodMeals) && ModSettings_QFramework.mealQuality) maxQuality = ModSettings_QFramework.maxMealQuality;
-                else if (def.IsNutritionGivingIngestible) maxQuality = ModSettings_QFramework.maxIngQuality;
+                else if (def.IsNutritionGivingIngestible)
+                {
+                    if (def.ingestible.preferability == FoodPreferability.RawTasty) maxQuality = ModSettings_QFramework.maxTastyQuality;
+                    else maxQuality = ModSettings_QFramework.maxIngQuality;
+                }
             }
-            //else if (def.IsShell && ModSettings_QualityFramework.shellQuality) maxQuality = ModSettings_QualityFramework.maxShellQuality;
+            else if (def.IsWeapon) maxQuality = ModSettings_QFramework.maxWeaponQuality;
+            else if (def.IsApparel) maxQuality = ModSettings_QFramework.maxApparelQuality;
+            else if (def.IsShell && ModSettings_QFramework.shellQuality) maxQuality = ModSettings_QFramework.maxShellQuality;
             return maxQuality;
         }
     }

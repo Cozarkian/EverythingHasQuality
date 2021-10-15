@@ -62,7 +62,7 @@ namespace QualityFramework
         [HarmonyPatch(typeof(GenRecipe), "MakeRecipeProducts")]
         public static void Prefix(List<Thing> ingredients, IBillGiver billGiver)
         {
-            SupplyQuality = -1; //Precautionary reset before starting
+            SupplyQuality = -1; //Reset before starting
             float value = -1;
             int numIng = 0;
             if (ingredients != null && ModSettings_QFramework.useMaterialQuality)
@@ -80,7 +80,7 @@ namespace QualityFramework
                 {
                     value = (value + 1) / numIng;
                 }
-                Log.Message("Ingredients are quality " + value);
+                //Log.Message("Ingredients are quality " + value);
             }
             //Check for work table quality
             Building_WorkTable workTable = billGiver as Building_WorkTable;
@@ -89,7 +89,7 @@ namespace QualityFramework
                 CompQuality tableQuality = workTable.TryGetComp<CompQuality>();
                 if (tableQuality != null)
                 {
-                    Log.Message("Table is quality " + (int)tableQuality.Quality);
+                    //Log.Message("Table is quality " + (int)tableQuality.Quality);
                     if (numIng == 0) value = (int)tableQuality.Quality;
                     else value = value * (1 - ModSettings_QFramework.tableFactor) + (int)tableQuality.Quality * ModSettings_QFramework.tableFactor;
                 }
@@ -98,7 +98,7 @@ namespace QualityFramework
             {
                 SupplyQuality = Mathf.Clamp(GenMath.RoundRandom(value), 0, 6);
             }
-            Log.Message("SupplyQuality is " + SupplyQuality + " and should be " + value);
+            //Log.Message("SupplyQuality is " + SupplyQuality + " and should be " + value);
         }
     }
 }
