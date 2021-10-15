@@ -41,21 +41,19 @@ namespace QualityFramework
             listingStandard.Gap(8f);
             listingStandard.Label("QFramework.Enable".Translate());
             listingStandard.GapLine();
-            listingStandard.CheckboxLabeled("     " + "QFramework.Frame".Translate(), ref ModSettings_QFramework.frameQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Work".Translate(), ref ModSettings_QFramework.workQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Power".Translate(), ref ModSettings_QFramework.powerQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Security".Translate(), ref ModSettings_QFramework.securityQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Edifice".Translate(), ref ModSettings_QFramework.edificeQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Stuff".Translate(), ref ModSettings_QFramework.stuffQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Meal".Translate(), ref ModSettings_QFramework.mealQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Ingredients".Translate(), ref ModSettings_QFramework.ingredientQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Work".Translate(), ref ModSettings_QFramework.workQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Security".Translate(), ref ModSettings_QFramework.securityQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Edifice".Translate(), ref ModSettings_QFramework.edificeQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Stuff".Translate(), ref ModSettings_QFramework.stuffQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Manuf".Translate(), ref ModSettings_QFramework.manufQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Meal".Translate(), ref ModSettings_QFramework.mealQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Ingredients".Translate(), ref ModSettings_QFramework.ingredientQuality);
             if (ModSettings_QFramework.ingredientQuality) listingStandard.Label("     " + "QFramework.Tasty".Translate());
-            listingStandard.CheckboxLabeled("     " + "QFramework.Drugs".Translate(), ref ModSettings_QFramework.drugQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Med".Translate(), ref ModSettings_QFramework.medQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Manuf".Translate(), ref ModSettings_QFramework.manufQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Weapons".Translate(), ref ModSettings_QFramework.weaponQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Apparel".Translate(), ref ModSettings_QFramework.apparelQuality);
-            listingStandard.CheckboxLabeled("     " + "QFramework.Shells".Translate(), ref ModSettings_QFramework.shellQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Drugs".Translate(), ref ModSettings_QFramework.drugQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Med".Translate(), ref ModSettings_QFramework.medQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Apparel".Translate(), ref ModSettings_QFramework.apparelQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Weapons".Translate(), ref ModSettings_QFramework.weaponQuality);
+            listingStandard.CheckboxLabeled("    " + "QFramework.Shells".Translate(), ref ModSettings_QFramework.shellQuality);
             //listingStandard.CheckboxLabeled("QFramework.".Translate(), ref ModSettings_QFramework);
             //listingStandard.CheckboxLabeled("QFramework.".Translate(), ref ModSettings_QFramework);
 
@@ -77,25 +75,11 @@ namespace QualityFramework
             listingStandard.Begin(rectMin);
             if (listingStandard.ButtonText("Restore Defaults", null)) RestoreDefaults();
             listingStandard.GapLine();
-            if (ModSettings_QFramework.frameQuality)
-            {
-                string labelFrame = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minFrameQuality).ToString();
-                string minFrameBuffer = ModSettings_QFramework.minFrameQuality.ToString();
-                LabeledIntEntry(listingStandard.GetRect(24f), labelFrame, ref ModSettings_QFramework.minFrameQuality, ref minFrameBuffer, 1, 0, 2);
-            }
-            else listingStandard.Gap(24);
             if (ModSettings_QFramework.workQuality)
             {
                 string labelWork = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minWorkQuality).ToString();
                 string minWorkBuffer = ModSettings_QFramework.minWorkQuality.ToString();
                 LabeledIntEntry(listingStandard.GetRect(24f), labelWork, ref ModSettings_QFramework.minWorkQuality, ref minWorkBuffer, 1, 0, 2);
-            }
-            else listingStandard.Gap(24);
-            if (ModSettings_QFramework.powerQuality)
-            {
-                string labelPower = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minPowerQuality).ToString();
-                string minPowerBuffer = ModSettings_QFramework.minPowerQuality.ToString();
-                LabeledIntEntry(listingStandard.GetRect(24f), labelPower, ref ModSettings_QFramework.minPowerQuality, ref minPowerBuffer, 1, 0, 2);
             }
             else listingStandard.Gap(24);
             if (ModSettings_QFramework.securityQuality)
@@ -117,6 +101,13 @@ namespace QualityFramework
                 string labelStuff = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minStuffQuality).ToString();
                 string minStuffBuffer = ModSettings_QFramework.minStuffQuality.ToString();
                 LabeledIntEntry(listingStandard.GetRect(24f), labelStuff, ref ModSettings_QFramework.minStuffQuality, ref minStuffBuffer, 1, 0, 2);
+            }
+            else listingStandard.Gap(24);
+            if (ModSettings_QFramework.manufQuality)
+            {
+                string labelManuf = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minManufQuality).ToString();
+                string minManufBuffer = ModSettings_QFramework.minManufQuality.ToString();
+                LabeledIntEntry(listingStandard.GetRect(24f), labelManuf, ref ModSettings_QFramework.minManufQuality, ref minManufBuffer, 1, 0, 2);
             }
             else listingStandard.Gap(24);
             if (ModSettings_QFramework.mealQuality)
@@ -151,21 +142,15 @@ namespace QualityFramework
                 LabeledIntEntry(listingStandard.GetRect(24f), labelMed, ref ModSettings_QFramework.minMedQuality, ref minMedBuffer, 1, 0, 2);
             }
             else listingStandard.Gap(24);
-            if (ModSettings_QFramework.manufQuality)
-            {
-                string labelManuf = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minManufQuality).ToString();
-                string minManufBuffer = ModSettings_QFramework.minManufQuality.ToString();
-                LabeledIntEntry(listingStandard.GetRect(24f), labelManuf, ref ModSettings_QFramework.minManufQuality, ref minManufBuffer, 1, 0, 2);
-            }
-            else listingStandard.Gap(24);
+
+            string labelApparel = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minApparelQuality).ToString();
+            string minApparelBuffer = ModSettings_QFramework.minApparelQuality.ToString();
+            LabeledIntEntry(listingStandard.GetRect(24f), labelApparel, ref ModSettings_QFramework.minApparelQuality, ref minApparelBuffer, 1, 0, 2);
 
             string labelWeapons = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minWeaponQuality).ToString();
             string minWeaponBuffer = ModSettings_QFramework.minWeaponQuality.ToString();
             LabeledIntEntry(listingStandard.GetRect(24f), labelWeapons, ref ModSettings_QFramework.minWeaponQuality, ref minWeaponBuffer, 1, 0, 2);
 
-            string labelApparel = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minApparelQuality).ToString();
-            string minApparelBuffer = ModSettings_QFramework.minApparelQuality.ToString();
-            LabeledIntEntry(listingStandard.GetRect(24f), labelApparel, ref ModSettings_QFramework.minApparelQuality, ref minApparelBuffer, 1, 0, 2);
             if (ModSettings_QFramework.shellQuality)
             {
                 string labelShell = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.minShellQuality).ToString();
@@ -204,12 +189,6 @@ namespace QualityFramework
                     listingStandard.CheckboxLabeled("QFramework.InspiredStonecutting".Translate(), ref ModSettings_QFramework.inspiredStonecutting);
                 else listingStandard.Gap(24f);
             }
-            if (ModSettings_QFramework.drugQuality || ModSettings_QFramework.medQuality)
-                listingStandard.CheckboxLabeled("QFramework.InspiredChemistry".Translate(), ref ModSettings_QFramework.inspiredChemistry);
-            if (ModSettings_QFramework.edificeQuality)
-                listingStandard.CheckboxLabeled("QFramework.InspiredConstruction".Translate(), ref ModSettings_QFramework.inspiredConstruction);
-            if (ModSettings_QFramework.mealQuality)
-                listingStandard.CheckboxLabeled("QFramework.InspiredCooking".Translate(), ref ModSettings_QFramework.inspiredCooking);
             listingStandard.End();
 
             //Column 3
@@ -217,24 +196,11 @@ namespace QualityFramework
             listingStandard.Begin(maxRect);
             listingStandard.Gap(32);
             listingStandard.GapLine();
-            if (ModSettings_QFramework.frameQuality)
-            {
-                string labelFrame2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxFrameQuality).ToString();
-                string maxFrameBuffer = ModSettings_QFramework.maxFrameQuality.ToString();
-                LabeledIntEntry(listingStandard.GetRect(24f), labelFrame2, ref ModSettings_QFramework.maxFrameQuality, ref maxFrameBuffer, 1, 2, 6);
-            }
-            else listingStandard.Gap(24);
             if (ModSettings_QFramework.workQuality)
             {
                 string labelWork2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxWorkQuality).ToString();
                 string maxWorkBuffer = ModSettings_QFramework.maxWorkQuality.ToString();
                 LabeledIntEntry(listingStandard.GetRect(24f), labelWork2, ref ModSettings_QFramework.maxWorkQuality, ref maxWorkBuffer, 1, 2, 6);
-            }
-            if (ModSettings_QFramework.powerQuality)
-            {
-                string labelPower2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxPowerQuality).ToString();
-                string maxPowerBuffer = ModSettings_QFramework.maxPowerQuality.ToString();
-                LabeledIntEntry(listingStandard.GetRect(24f), labelPower2, ref ModSettings_QFramework.maxPowerQuality, ref maxPowerBuffer, 1, 2, 6);
             }
             else listingStandard.Gap(24);
             if (ModSettings_QFramework.securityQuality)
@@ -258,6 +224,13 @@ namespace QualityFramework
                 LabeledIntEntry(listingStandard.GetRect(24f), labelStuff2, ref ModSettings_QFramework.maxStuffQuality, ref maxStuffBuffer, 1, 2, 6);
             }
             else listingStandard.Gap(24);
+            if (ModSettings_QFramework.manufQuality)
+            {
+                string labelManuf2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxManufQuality).ToString();
+                string maxManufBuffer = ModSettings_QFramework.maxManufQuality.ToString();
+                LabeledIntEntry(listingStandard.GetRect(24f), labelManuf2, ref ModSettings_QFramework.maxManufQuality, ref maxManufBuffer, 1, 2, 6);
+            }
+            else listingStandard.Gap(24);
             if (ModSettings_QFramework.mealQuality)
             {
                 string labelMeals2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxMealQuality).ToString();
@@ -271,7 +244,7 @@ namespace QualityFramework
                 string maxIngBuffer = ModSettings_QFramework.maxIngQuality.ToString();
                 LabeledIntEntry(listingStandard.GetRect(24f), labelIng2, ref ModSettings_QFramework.maxIngQuality, ref maxIngBuffer, 1, 2, 6);
 
-                string labelTasty2 = "QFramework.Min".Translate() + ((QualityCategory)ModSettings_QFramework.maxTastyQuality).ToString();
+                string labelTasty2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxTastyQuality).ToString();
                 string maxTastyBuffer = ModSettings_QFramework.maxTastyQuality.ToString();
                 LabeledIntEntry(listingStandard.GetRect(24f), labelTasty2, ref ModSettings_QFramework.maxTastyQuality, ref maxTastyBuffer, 1, 2, 6);
             }
@@ -290,21 +263,15 @@ namespace QualityFramework
                 LabeledIntEntry(listingStandard.GetRect(24f), labelMed2, ref ModSettings_QFramework.maxMedQuality, ref maxMedBuffer, 1, 2, 6);
             }
             else listingStandard.Gap(24);
-            if (ModSettings_QFramework.manufQuality)
-            {
-                string labelManuf2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxManufQuality).ToString();
-                string maxManufBuffer = ModSettings_QFramework.maxManufQuality.ToString();
-                LabeledIntEntry(listingStandard.GetRect(24f), labelManuf2, ref ModSettings_QFramework.maxManufQuality, ref maxManufBuffer, 1, 2, 6);
-            }
-            else listingStandard.Gap(24);
+
+            string labelApparel2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxApparelQuality).ToString();
+            string maxApparelBuffer = ModSettings_QFramework.maxApparelQuality.ToString();
+            LabeledIntEntry(listingStandard.GetRect(24f), labelApparel2, ref ModSettings_QFramework.maxApparelQuality, ref maxApparelBuffer, 1, 2, 6);
 
             string labelWeapons2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxWeaponQuality).ToString();
             string maxWeaponBuffer = ModSettings_QFramework.maxWeaponQuality.ToString();
             LabeledIntEntry(listingStandard.GetRect(24f), labelWeapons2, ref ModSettings_QFramework.maxWeaponQuality, ref maxWeaponBuffer, 1, 2, 6);
 
-            string labelApparel2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxApparelQuality).ToString();
-            string maxApparelBuffer = ModSettings_QFramework.maxApparelQuality.ToString();
-            LabeledIntEntry(listingStandard.GetRect(24f), labelApparel2, ref ModSettings_QFramework.maxApparelQuality, ref maxApparelBuffer, 1, 2, 6);
             if (ModSettings_QFramework.shellQuality)
             {
                 string labelShell2 = "QFramework.Max".Translate() + ((QualityCategory)ModSettings_QFramework.maxShellQuality).ToString();
@@ -312,7 +279,6 @@ namespace QualityFramework
                 LabeledIntEntry(listingStandard.GetRect(24f), labelShell2, ref ModSettings_QFramework.maxShellQuality, ref maxShellBuffer, 1, 2, 6);
             }
             else listingStandard.Gap(24);
-
             listingStandard.GapLine();
             if (ModSettings_QFramework.useMaterialQuality || ModSettings_QFramework.useTableQuality)
             {
@@ -323,6 +289,12 @@ namespace QualityFramework
             }
             else listingStandard.Gap(48);
             listingStandard.GapLine();
+            if (ModSettings_QFramework.drugQuality || ModSettings_QFramework.medQuality)
+                listingStandard.CheckboxLabeled("QFramework.InspiredChemistry".Translate(), ref ModSettings_QFramework.inspiredChemistry);
+            if (ModSettings_QFramework.edificeQuality)
+                listingStandard.CheckboxLabeled("QFramework.InspiredConstruction".Translate(), ref ModSettings_QFramework.inspiredConstruction);
+            if (ModSettings_QFramework.mealQuality)
+                listingStandard.CheckboxLabeled("QFramework.InspiredCooking".Translate(), ref ModSettings_QFramework.inspiredCooking);
             listingStandard.End();
         }
 
@@ -370,25 +342,17 @@ namespace QualityFramework
             //ModSettings_QFramework.lessRandomQuality = true;
             //ModSettings_QFramework.minSkillEx = 10;
             //ModSettings_QFramework.maxSkillAw = 17;
-            ModSettings_QFramework.frameQuality = true;
-            ModSettings_QFramework.minFrameQuality = 0;
-            ModSettings_QFramework.maxFrameQuality = 4;
+            ModSettings_QFramework.edificeQuality = true;
+            ModSettings_QFramework.minEdificeQuality = 0;
+            ModSettings_QFramework.maxEdificeQuality = 4;
 
             ModSettings_QFramework.workQuality = true;
             ModSettings_QFramework.minWorkQuality = 0;
             ModSettings_QFramework.maxWorkQuality = 4;
-
-            ModSettings_QFramework.powerQuality = true;
-            ModSettings_QFramework.minPowerQuality = 0;
-            ModSettings_QFramework.maxPowerQuality = 4;
             
             ModSettings_QFramework.securityQuality = true;
             ModSettings_QFramework.minSecurityQuality = 0;
             ModSettings_QFramework.maxSecurityQuality = 4;
-
-            ModSettings_QFramework.edificeQuality = true;
-            ModSettings_QFramework.minEdificeQuality = 0;
-            ModSettings_QFramework.maxEdificeQuality = 4;
 
             ModSettings_QFramework.stuffQuality = true;
             ModSettings_QFramework.minStuffQuality = 0;

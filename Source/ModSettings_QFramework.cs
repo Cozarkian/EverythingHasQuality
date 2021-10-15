@@ -28,25 +28,17 @@ namespace QualityFramework
         //public static int minSkillEx = 10;
         //public static int maxSkillAw = 17;
 
-        public static bool frameQuality = true;
-        public static int minFrameQuality = 0;
-        public static int maxFrameQuality = 4;
+        public static bool edificeQuality = true;
+        public static int minEdificeQuality = 0;
+        public static int maxEdificeQuality = 4;
 
         public static bool workQuality = true;
         public static int minWorkQuality = 0;
         public static int maxWorkQuality = 4;
 
-        public static bool powerQuality = true;
-        public static int minPowerQuality = 0;
-        public static int maxPowerQuality = 4;
-
         public static bool securityQuality = true;
         public static int minSecurityQuality = 0;
         public static int maxSecurityQuality = 4;
-
-        public static bool edificeQuality = true;
-        public static int minEdificeQuality = 0;
-        public static int maxEdificeQuality = 4;
 
         public static bool stuffQuality = true;
         public static int minStuffQuality = 0;
@@ -107,25 +99,17 @@ namespace QualityFramework
             Scribe_Values.Look(ref skilledMining, "skilledMining", false);
             Scribe_Values.Look(ref skilledStoneCutting, "skilledStoneCutting", false);
 
-            Scribe_Values.Look(ref frameQuality, "frameQuality", true);
-            Scribe_Values.Look(ref minFrameQuality, "minFrameQuality", 0);
-            Scribe_Values.Look(ref maxFrameQuality, "maxFrameQuality", 4);
+            Scribe_Values.Look(ref edificeQuality, "edificeQuality", true);
+            Scribe_Values.Look(ref minEdificeQuality, "minEdificeQuality", 0);
+            Scribe_Values.Look(ref maxEdificeQuality, "maxEdificeQuality", 4);
 
             Scribe_Values.Look(ref workQuality, "workQuality", true);
             Scribe_Values.Look(ref minWorkQuality, "minWorkQuality", 0);
             Scribe_Values.Look(ref maxWorkQuality, "maxWorkQuality", 4);
 
-            Scribe_Values.Look(ref powerQuality, "powerQuality", true);
-            Scribe_Values.Look(ref minPowerQuality, "minPowerQuality", 0);
-            Scribe_Values.Look(ref maxPowerQuality, "maxPowerQuality", 4);
-
             Scribe_Values.Look(ref securityQuality, "securityQuality", true);
             Scribe_Values.Look(ref minSecurityQuality, "minSecurityQuality", 0);
             Scribe_Values.Look(ref maxSecurityQuality, "maxSecurityQuality", 4);
-
-            Scribe_Values.Look(ref edificeQuality, "edificeQuality", true);
-            Scribe_Values.Look(ref minEdificeQuality, "minEdificeQuality", 0);
-            Scribe_Values.Look(ref maxEdificeQuality, "maxEdificeQuality", 4);
 
             Scribe_Values.Look(ref stuffQuality, "stuffQuality", true);
             Scribe_Values.Look(ref minStuffQuality, "minStuffQuality", 0);

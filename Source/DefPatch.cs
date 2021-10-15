@@ -17,12 +17,16 @@ namespace QualityFramework
                 def = DefDatabase<ThingDef>.AllDefsListForReading[m];
                 if (!def.HasComp(typeof(CompQuality)))
                 {
-                    if (def.IsBuildingArtificial)
+                    if (def.building != null && def.Claimable)
                     {
-                        if ((def.IsFrame || def.IsFence) && ModSettings_QFramework.frameQuality) def.comps.Add(comp);
-                        else if (def.IsWorkTable && ModSettings_QFramework.workQuality) def.comps.Add(comp);
-                        else if (def.IsWithinCategory(ThingCategoryDef.Named("BuildingsPower")) && ModSettings_QFramework.workQuality) def.comps.Add(comp);
-                        else if (def.IsWithinCategory(ThingCategoryDef.Named("BuildingsSecurity")) && ModSettings_QFramework.workQuality) def.comps.Add(comp);
+                        if (def.IsWorkTable)
+                        {
+                            if (ModSettings_QFramework.workQuality) def.comps.Add(comp);
+                        }
+                        else if (def.IsWithinCategory(ThingCategoryDef.Named("BuildingsSecurity")) || def.building.IsTurret)
+                        {
+                            if (ModSettings_QFramework.securityQuality) def.comps.Add(comp);
+                        }
                         else if (ModSettings_QFramework.edificeQuality) def.comps.Add(comp);
                     }
                     else if (def.IsStuff && ModSettings_QFramework.stuffQuality)
@@ -52,6 +56,10 @@ namespace QualityFramework
                             continue;
                         def.comps.Add(comp);
                     }
+                    else if ((def.IsShell || (def.IsWeapon && def.category == ThingCategory.Projectile)) && ModSettings_QFramework.shellQuality)
+                    {
+                        def.comps.Add(comp);
+                    }
                     else if (def.IsWeapon && ModSettings_QFramework.weaponQuality)
                     {
                         def.comps.Add(comp);
@@ -60,15 +68,9 @@ namespace QualityFramework
                     {
                         def.comps.Add(comp);
                     }
-                    /*else if ((def.IsShell || def.thingCategories.Contains(ThingCategoryDefOf.gren && ModSettings_QualityFramework.shellQuality)
-                    {
-                        def.comps.Add(comp);
-                        def.BaseMarketValue = def.BaseMarketValue * .8f;
-                    }*/
                     //Log.Message(def.label + " now has quality");
                 }
             }
-
         }
     }
 }

@@ -79,12 +79,10 @@ namespace QualityFramework
             //Log.Message("Finding minimum quality");
             ThingDef def = thing.def;
             int minQuality = 0;
-            if (def.IsBuildingArtificial)
+            if (def.building != null)
             {
-                if ((def.IsFrame || def.IsFence) && ModSettings_QFramework.frameQuality) minQuality = ModSettings_QFramework.minFrameQuality;
-                else if (def.IsWorkTable && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minWorkQuality;
-                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsPower")) && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minPowerQuality;
-                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsSecurity")) && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minSecurityQuality;
+                if (def.IsWorkTable && ModSettings_QFramework.workQuality) minQuality = ModSettings_QFramework.minWorkQuality;
+                else if ((def.IsWithinCategory(ThingCategoryDef.Named("BuildingsSecurity")) || def.building.IsTurret) && ModSettings_QFramework.securityQuality) minQuality = ModSettings_QFramework.minSecurityQuality;
                 else if (def.building != null && ModSettings_QFramework.edificeQuality) minQuality = ModSettings_QFramework.minEdificeQuality;
             }         
             else if (def.IsStuff && ModSettings_QFramework.stuffQuality) minQuality = ModSettings_QFramework.minStuffQuality;
@@ -102,7 +100,7 @@ namespace QualityFramework
             }
             else if (def.IsWeapon) minQuality = ModSettings_QFramework.minWeaponQuality;
             else if (def.IsApparel) minQuality = ModSettings_QFramework.minApparelQuality;
-            else if (def.IsShell && ModSettings_QFramework.shellQuality) minQuality = ModSettings_QFramework.minShellQuality;
+            else if ((def.IsShell || (def.IsWeapon && def.category == ThingCategory.Projectile)) && ModSettings_QFramework.shellQuality) minQuality = ModSettings_QFramework.minShellQuality;
             return minQuality;
         }
 
@@ -116,12 +114,10 @@ namespace QualityFramework
             {
                 return maxQuality;
             }
-            if (def.IsBuildingArtificial)
+            if (def.building != null)
             {
-                if ((def.IsFrame || def.IsFence) && ModSettings_QFramework.frameQuality) maxQuality = ModSettings_QFramework.maxFrameQuality;
-                else if (def.IsWorkTable && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxWorkQuality;
-                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsPower")) && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxPowerQuality;
-                else if (def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsSecurity")) && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxSecurityQuality;
+                if (def.IsWorkTable && ModSettings_QFramework.workQuality) maxQuality = ModSettings_QFramework.maxWorkQuality;
+                else if ((def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsSecurity")) || def.building.IsTurret) && ModSettings_QFramework.securityQuality) maxQuality = ModSettings_QFramework.maxSecurityQuality;
                 else if (def.building != null && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;
             }
             else if (def.building != null && ModSettings_QFramework.edificeQuality) maxQuality = ModSettings_QFramework.maxEdificeQuality;
@@ -140,7 +136,7 @@ namespace QualityFramework
             }
             else if (def.IsWeapon) maxQuality = ModSettings_QFramework.maxWeaponQuality;
             else if (def.IsApparel) maxQuality = ModSettings_QFramework.maxApparelQuality;
-            else if (def.IsShell && ModSettings_QFramework.shellQuality) maxQuality = ModSettings_QFramework.maxShellQuality;
+            else if ((def.IsShell || (def.IsWeapon && def.category == ThingCategory.Projectile)) && ModSettings_QFramework.shellQuality) maxQuality = ModSettings_QFramework.maxShellQuality;
             return maxQuality;
         }
     }
