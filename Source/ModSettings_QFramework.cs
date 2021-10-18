@@ -1,9 +1,11 @@
-﻿using Verse;
+﻿using System.Collections.Generic;
+using Verse;
 
 namespace QualityFramework
 {
     public class ModSettings_QFramework : ModSettings
     {
+
         public static bool useMaterialQuality = true;
         public static bool useTableQuality = true;
         public static int stdSupplyQuality = 4;
@@ -78,6 +80,27 @@ namespace QualityFramework
         public static int minShellQuality = 0;
         public static int maxShellQuality = 4;
 
+        public static bool indivBuildings = false;
+        public static bool indivWeapons = false;
+        public static bool indivApparel = false;
+        public static bool indivOther = false;
+
+        public static Dictionary<string, bool> bldgDict = new Dictionary<string, bool>();
+        public static List<string> bldgKeys = new List<string>();
+        public static List<bool> bldgValues = new List<bool>();
+
+        public static Dictionary<string, bool> weapDict = new Dictionary<string, bool>();
+        public static List<string> weapKeys = new List<string>();
+        public static List<bool> weapValues = new List<bool>();
+
+        public static Dictionary<string, bool> appDict = new Dictionary<string, bool>();
+        public static List<string> appKeys = new List<string>();
+        public static List<bool> appValues = new List<bool>();
+
+        public static Dictionary<string, bool> otherDict = new Dictionary<string, bool>();
+        public static List<string> otherKeys = new List<string>();
+        public static List<bool> otherValues = new List<bool>();
+
         public override void ExposeData()
         {
             Scribe_Values.Look(ref useMaterialQuality, "useMaterialQuality", true);
@@ -148,6 +171,16 @@ namespace QualityFramework
             Scribe_Values.Look(ref shellQuality, "shellQuality", true);
             Scribe_Values.Look(ref minShellQuality, "minShellQuality", 0);
             Scribe_Values.Look(ref maxShellQuality, "maxShellQuality", 4);
+
+            Scribe_Values.Look(ref indivBuildings, "indivBuildings", false);
+            Scribe_Values.Look(ref indivWeapons, "indivWeapons", false);
+            Scribe_Values.Look(ref indivApparel, "indivApparel", false);
+            Scribe_Values.Look(ref indivOther, "indivOther", false);
+            Scribe_Collections.Look<string, bool>(ref bldgDict, "bldgDict", LookMode.Value, LookMode.Value, ref bldgKeys, ref bldgValues);
+            Scribe_Collections.Look<string, bool>(ref weapDict, "weapDict", LookMode.Value, LookMode.Value, ref weapKeys, ref weapValues);
+            Scribe_Collections.Look<string, bool>(ref appDict, "appDict", LookMode.Value, LookMode.Value, ref appKeys, ref appValues);
+            Scribe_Collections.Look<string, bool>(ref otherDict, "otherDict", LookMode.Value, LookMode.Value, ref otherKeys, ref otherValues);
+
             base.ExposeData();
         }
     }

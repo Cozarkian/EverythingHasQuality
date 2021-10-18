@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <LanguageData>
-	<QFramework.Enable>Enable quality for:</QFramework.Enable>
+	<QFramework.Tab0>Category Limits</QFramework.Tab0>
+	<QFramework.Tab1>Skill &amp; Inspiration</QFramework.Tab1>
+	<QFramework.Tab2>Indiv. Buildings</QFramework.Tab2>
+	<QFramework.Tab3>Indiv. Weap &amp; Apparel</QFramework.Tab3>
+	<QFramework.Tab4>Indiv. Other</QFramework.Tab4>
+
+	<QFramework.Enable>Enable:</QFramework.Enable>
+	<QFramework.Disable>Disable:</QFramework.Disable>
+	<QFramework.Select>Select All</QFramework.Select>
+	<QFramework.Deselect>Deselect All</QFramework.Deselect>
 	<QFramework.Min>Min Quality: </QFramework.Min>
 	<QFramework.Max>Max Quality: </QFramework.Max>
 
-	<QFramework.Frame>Frames (Walls, Doors) and Fences</QFramework.Frame>
 	<QFramework.Work>Work Tables</QFramework.Work>
-	<QFramework.Power>Power Buildings</QFramework.Power>
 	<QFramework.Security>Security Buildings</QFramework.Security>
 	<QFramework.Edifice>Other Buildings and Construction</QFramework.Edifice>
 	<QFramework.Stuff>Stuff and Resources</QFramework.Stuff>
@@ -19,7 +26,7 @@
 	<QFramework.Manuf>Manufactured Goods</QFramework.Manuf>
 	<QFramework.Apparel>Apparel (additional to vanilla)</QFramework.Apparel>
 	<QFramework.Weapons>Weapons (additional to vanilla)</QFramework.Weapons>
-	<QFramework.Shells>Shells and Grenades</QFramework.Shells>
+	<QFramework.Shells>Shells</QFramework.Shells>
 	
 	<QFramework.Materials>Resources/Ingredients Affect Quality</QFramework.Materials>
 	<QFramework.Tables>Work Tables Affect Quality</QFramework.Tables>

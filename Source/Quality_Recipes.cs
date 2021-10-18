@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -86,13 +86,12 @@ namespace QualityFramework
             Building_WorkTable workTable = billGiver as Building_WorkTable;
             if (workTable != null && ModSettings_QFramework.useTableQuality)
             {
+                int tableValue = ModSettings_QFramework.minWorkQuality;
                 CompQuality tableQuality = workTable.TryGetComp<CompQuality>();
-                if (tableQuality != null)
-                {
-                    //Log.Message("Table is quality " + (int)tableQuality.Quality);
-                    if (numIng == 0) value = (int)tableQuality.Quality;
-                    else value = value * (1 - ModSettings_QFramework.tableFactor) + (int)tableQuality.Quality * ModSettings_QFramework.tableFactor;
-                }
+                if (tableQuality != null) tableValue = (int)tableQuality.Quality;
+                //Log.Message("Table is quality " + tableValue);
+                if (numIng == 0) value = tableValue;
+                else value = value * (1 - ModSettings_QFramework.tableFactor) + tableValue * ModSettings_QFramework.tableFactor;
             }
             if (value >= 0)
             {
