@@ -2,18 +2,19 @@
 <ModMetaData>
 	<name>Quality Framework</name>
 	<author>Cozarkian</author>
-  <supportedVersions>
+  	<supportedVersions>
 		<li>1.3</li>
-  </supportedVersions>
-  <packageId>Cozarkian.QualityFramework</packageId>
-  <modDependencies>
+  	</supportedVersions>
+  	<packageId>Cozarkian.QualityFramework</packageId>
+	<url>https://steamcommunity.com/sharedfiles/filedetails/?id=2627433311</url>
+  	<modDependencies>
 		<li>
 			<packageId>brrainz.harmony</packageId>
 			<displayName>Harmony</displayName>
 			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
 			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
 		</li>
-  </modDependencies>
-  <description>(Almost) everything has quality. This mod provides configurable options for giving quality to buildings, materials, ingredients, meals, drugs and medicine. It is primarily intended as a framework for supporting other mods. However, it can be used alone to extend vanilla quality adjustments for market value and beauty to other items.</description>
+  	</modDependencies>
+  	<description>(Almost) everything has quality. This mod provides configurable options for giving quality to buildings, materials, ingredients, meals, drugs and medicine. It is primarily intended as a framework for supporting other mods. However, it can be used alone to extend vanilla quality adjustments for market value and beauty to other items.</description>
 </ModMetaData>
 
