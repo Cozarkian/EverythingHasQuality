@@ -10,27 +10,70 @@ namespace QualityFramework
         public static float Postfix(float __result, InspirationWorker __instance)
         {
             InspirationDef inspiration = __instance.def;
-            if (ModSettings_QFramework.stuffQuality)
+            if (inspiration == DefOf_QFramework.QF_Inspired_Butchering)
             {
-                if ((inspiration == DefOf_QFramework.QF_Inspired_Butchering && ModSettings_QFramework.inspiredButchering && ModSettings_QFramework.skilledButchering) ||
-                    (inspiration == DefOf_QFramework.QF_Inspired_Gathering && ModSettings_QFramework.inspiredGathering && ModSettings_QFramework.skilledAnimals) ||
-                    (inspiration == DefOf_QFramework.QF_Inspired_Harvesting && ModSettings_QFramework.inspiredHarvesting && ModSettings_QFramework.skilledHarvesting) ||
-                    (inspiration == DefOf_QFramework.QF_Inspired_Mining && ModSettings_QFramework.inspiredMining && ModSettings_QFramework.skilledMining) ||
-                    (inspiration == DefOf_QFramework.QF_Inspired_Stonecutting && ModSettings_QFramework.inspiredStonecutting && ModSettings_QFramework.skilledStoneCutting))
+                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredButchering && ModSettings_QFramework.skilledButchering)
                 {
-                    __result = 0f;
+                    return __result;
                 }
+                return 0f;
             }
-            else if (inspiration == DefOf_QFramework.QF_Inspired_Chemistry && 
-                    ModSettings_QFramework.inspiredChemistry && 
-                    (ModSettings_QFramework.drugQuality || ModSettings_QFramework.medQuality))
+            if (inspiration == DefOf_QFramework.QF_Inspired_Gathering)
             {
-                 __result = 0f;
+                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredGathering && ModSettings_QFramework.skilledAnimals)
+                {
+                    return __result;
+                }
+                return 0f;
             }
-            else if ((inspiration == DefOf_QFramework.QF_Inspired_Construction && ModSettings_QFramework.inspiredConstruction && ModSettings_QFramework.edificeQuality) ||
-                     (inspiration == DefOf_QFramework.QF_Inspired_Cooking && ModSettings_QFramework.inspiredCooking && ModSettings_QFramework.mealQuality))
+            if (inspiration == DefOf_QFramework.QF_Inspired_Harvesting)
             {
-                __result = 0f;
+                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredHarvesting && ModSettings_QFramework.skilledHarvesting)
+                {
+                    return __result;
+                }
+                return 0f;
+            }
+            if (inspiration == DefOf_QFramework.QF_Inspired_Mining)
+            {
+                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredMining && ModSettings_QFramework.skilledMining)
+                {
+                    return __result;
+                }
+                return 0f;
+            }
+            if (inspiration == DefOf_QFramework.QF_Inspired_Stonecutting)
+            { 
+                if(ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredStonecutting && ModSettings_QFramework.skilledStoneCutting)
+                { 
+                    return __result;
+                }
+                return 0f;
+            }
+            if (inspiration == DefOf_QFramework.QF_Inspired_Chemistry)
+            {
+                if (ModSettings_QFramework.inspiredChemistry && (ModSettings_QFramework.drugQuality || ModSettings_QFramework.medQuality))
+                {
+                    return __result;
+                }
+                return 0f;
+            }
+            if (inspiration == DefOf_QFramework.QF_Inspired_Construction)
+            {
+                if (ModSettings_QFramework.inspiredConstruction && (ModSettings_QFramework.edificeQuality || ModSettings_QFramework.workQuality || ModSettings_QFramework.securityQuality))
+                {
+                    return __result;
+                }
+                return 0f;
+ 
+            }
+            if (inspiration == DefOf_QFramework.QF_Inspired_Cooking)
+            {
+                if (ModSettings_QFramework.inspiredCooking && ModSettings_QFramework.mealQuality)
+                {
+                    return __result;
+                }
+                return 0f;
             }
             return __result;
         }

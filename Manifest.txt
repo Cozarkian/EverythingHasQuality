@@ -1,3 +1,6 @@
+[10/17/2021]
+Added customization options for individual items.
+
 [10/15/2021]
 Added options for security/turrets, weapons, apparel, shells/grenades, raw tasty foods.
 
