@@ -11,7 +11,9 @@ namespace QualityFramework
 {
     [HarmonyPatch]
     class Quality_Resources
-    {   
+    {
+        static readonly MethodInfo mGenerateResQuality = AccessTools.Method(typeof(Quality_Resources), "GenerateResourceQuality");
+
         [HarmonyPatch(typeof(QuestManager), "Notify_PlantHarvested")]
         [HarmonyPrefix]
         public static void HarvestQuality(Pawn worker, Thing harvested)
@@ -35,7 +37,7 @@ namespace QualityFramework
                     yield return new CodeInstruction(OpCodes.Dup);
                     yield return new CodeInstruction(OpCodes.Ldarg_S, 4);
                     yield return loadInstruction;
-                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Quality_Resources), "GenerateResourceQuality"));
+                    yield return new CodeInstruction(OpCodes.Call, mGenerateResQuality);
                 }
             }
             yield break;
@@ -59,7 +61,7 @@ namespace QualityFramework
                     yield return new CodeInstruction(OpCodes.Dup);
                     yield return new CodeInstruction(OpCodes.Ldarg_1);
                     yield return loadInstruction;
-                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Quality_Resources), "GenerateResourceQuality"));
+                    yield return new CodeInstruction(OpCodes.Call, mGenerateResQuality);
                 }
             }
             yield break;
@@ -79,37 +81,34 @@ namespace QualityFramework
                 if (code.opcode == OpCodes.Call && (MethodInfo)code.operand == AccessTools.Method(typeof(ThingMaker), "MakeThing", new Type[] { typeof(ThingDef), typeof(ThingDef) }))
                 {
                     yield return new CodeInstruction(OpCodes.Dup);
-                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Quality_Resources), "CalculateResourceQuality"));
+                    yield return new CodeInstruction(OpCodes.Ldnull);
+                    yield return new CodeInstruction(OpCodes.Ldnull);
+                    yield return new CodeInstruction(OpCodes.Call, mGenerateResQuality);
                 }
             }
             yield break;
         }
 
-        public static void GenerateResourceQuality(Thing thing, Pawn worker, SkillDef relevantSkill)
+        public static void GenerateResourceQuality(Thing thing, Pawn worker = null, SkillDef relevantSkill = null)
         {
-            //Log.Message("Choosing quality generator");
-            if ((relevantSkill == SkillDefOf.Mining && ModSettings_QFramework.skilledMining) ||
-                (relevantSkill == SkillDefOf.Plants && ModSettings_QFramework.skilledHarvesting) ||
-                (relevantSkill == SkillDefOf.Animals && ModSettings_QFramework.skilledAnimals))
-            {
-                Quality_Generator.GenerateQualityCreatedByPawn(worker, relevantSkill, thing);
-            }
-            else
-            {
-                CalculateResourceQuality(thing);
-            }
-        }
-
-        public static void CalculateResourceQuality(Thing thing)
-        {
-            CompQuality compQuality = thing.TryGetComp<CompQuality>();
-            if (compQuality == null)
+            //Log.Message("Using skill for harvesting is " + ModSettings_QFramework.skilledHarvesting);
+            CompQuality comp = thing.TryGetComp<CompQuality>();
+            if (comp == null)
             {
                 return;
             }
-            //Log.Message("Generating resource quality");
-            QualityCategory quality = QualityUtility.GenerateQuality(QualityGenerator.BaseGen);
-            compQuality.SetQuality(quality, ArtGenerationContext.Colony);
+            //Log.Message("Choosing quality generator");
+            QualityCategory qc = QualityCategory.Normal;
+            if (worker != null && relevantSkill != null &&
+               ((relevantSkill == SkillDefOf.Mining && ModSettings_QFramework.skilledMining) || (relevantSkill == SkillDefOf.Plants && ModSettings_QFramework.skilledHarvesting) || (relevantSkill == SkillDefOf.Animals && ModSettings_QFramework.skilledAnimals)))
+            {
+                qc = Quality_Generator.GenerateQualityCreatedByPawn(worker, relevantSkill, thing);
+            }
+            else
+            {
+                qc = QualityUtility.GenerateQuality(QualityGenerator.BaseGen);
+            }
+            comp.SetQuality(qc, ArtGenerationContext.Colony);
         }
     }
 }

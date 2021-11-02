@@ -8,7 +8,8 @@ namespace QualityFramework
 
         public static bool useMaterialQuality = true;
         public static bool useTableQuality = true;
-        public static int stdSupplyQuality = 4;
+        public static bool useSkillReq = true;
+        public static int stdSupplyQuality = 0;
         public static float tableFactor = .4f;
 
         public static bool inspiredButchering = true;
@@ -25,10 +26,6 @@ namespace QualityFramework
         public static bool skilledHarvesting = false;
         public static bool skilledMining = false;
         public static bool skilledStoneCutting = false;
-
-        //public static bool lessRandomQuality = true;
-        //public static int minSkillEx = 10;
-        //public static int maxSkillAw = 17;
 
         public static bool edificeQuality = true;
         public static int minEdificeQuality = 0;
@@ -105,7 +102,8 @@ namespace QualityFramework
         {
             Scribe_Values.Look(ref useMaterialQuality, "useMaterialQuality", true);
             Scribe_Values.Look(ref useTableQuality, "useTableQuality", true);
-            Scribe_Values.Look(ref stdSupplyQuality, "stdSupplyQuality", 4);
+            Scribe_Values.Look(ref useSkillReq, "useSkillReq", true);
+            Scribe_Values.Look(ref stdSupplyQuality, "stdSupplyQuality", 0);
 
             Scribe_Values.Look(ref inspiredButchering, "inspiredButchering", true);
             Scribe_Values.Look(ref inspiredChemistry, "inspiredChemistry", true);

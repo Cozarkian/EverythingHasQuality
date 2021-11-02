@@ -30,6 +30,7 @@
 	
 	<QFramework.Materials>Resources/Ingredients Affect Quality</QFramework.Materials>
 	<QFramework.Tables>Work Tables Affect Quality</QFramework.Tables>
+	<QFramework.SkillReq>Skill Requirements Affect Quality</QFramework.SkillReq>
 	<QFramework.Standard>Std Quality: </QFramework.Standard>
 	
 	<QFramework.SkilledAnimals>Skills Affect Quality of Animal Products</QFramework.SkilledAnimals>

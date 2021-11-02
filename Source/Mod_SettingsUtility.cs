@@ -26,39 +26,6 @@ namespace QualityFramework
             Widgets.TextFieldNumeric<int>(new Rect(rect.xMax - 60f, rect.yMin, 25f, rect.height), ref value, ref editBuffer, min, max);
         }
 
-        public static void PopulateDictionary()
-        {
-            ThingDef def;
-            bool hasComp;
-            for (int i = 0; i < DefDatabase<ThingDef>.AllDefsListForReading.Count; i++)
-            {
-                def = DefDatabase<ThingDef>.AllDefsListForReading[i];
-                hasComp = def.HasComp(typeof(CompQuality));
-                if (def.IsStuff || def.IsCorpse || def.plant == null) continue;
-                if (def.building != null)
-                {
-                    if (ModSettings_QFramework.indivBuildings && !def.IsBlueprint && !def.IsFrame && !ModSettings_QFramework.bldgDict.ContainsKey(def.defName))
-                        ModSettings_QFramework.bldgDict.Add(def.defName, hasComp);
-                }
-                else if ((def.IsWeapon || def.IsShell || def.IsWithinCategory(ThingCategoryDef.Named("Grenades"))) && !def.IsIngestible)
-                {
-                    if (ModSettings_QFramework.indivWeapons && !ModSettings_QFramework.weapDict.ContainsKey(def.defName))
-                        ModSettings_QFramework.weapDict.Add(def.defName, hasComp);
-                }
-                else if (def.IsApparel)
-                {
-                    if (ModSettings_QFramework.indivApparel && !ModSettings_QFramework.appDict.ContainsKey(def.defName))
-                        ModSettings_QFramework.appDict.Add(def.defName, hasComp);
-                }
-                else if (def.IsWithinCategory(ThingCategoryDefOf.Manufactured) || def.IsDrug || def.IsMedicine || def.IsIngestible)
-                {
-                    if (ModSettings_QFramework.indivOther && !ModSettings_QFramework.otherDict.ContainsKey(def.defName)) 
-                        ModSettings_QFramework.otherDict.Add(def.defName, hasComp);
-                }
-            }
-            Log.Message("Dictionaries have been built");
-        }
-
         public static void PopulateBuildings()
         {
             ThingDef def;
@@ -113,20 +80,21 @@ namespace QualityFramework
             {
                 def = DefDatabase<ThingDef>.AllDefsListForReading[i];
                 hasComp = def.HasComp(typeof(CompQuality));
-                if ((def.IsWithinCategory(ThingCategoryDefOf.Manufactured) || def.IsDrug || def.IsMedicine || def.IsIngestible))
+                if (def.IsWithinCategory(ThingCategoryDefOf.Manufactured) || def.IsDrug || def.IsMedicine || def.IsIngestible)
                 {
                     if (def.IsStuff || def.IsCorpse || def.plant != null || def.IsShell) continue;
                     else if (!ModSettings_QFramework.otherDict.ContainsKey(def.defName)) ModSettings_QFramework.otherDict.Add(def.defName, hasComp);
                 }
             }
-            Log.Message("Other dictionary has " + ModSettings_QFramework.otherDict.Count + " items");
+            //Log.Message("Other dictionary has " + ModSettings_QFramework.otherDict.Count + " items");
         }
 
         public static void RestoreDefaults()
         {
             ModSettings_QFramework.useMaterialQuality = true;
             ModSettings_QFramework.useTableQuality = true;
-            ModSettings_QFramework.stdSupplyQuality = 4;
+            ModSettings_QFramework.useSkillReq = true;
+            ModSettings_QFramework.stdSupplyQuality = 0;
             ModSettings_QFramework.tableFactor = .4f;
 
             ModSettings_QFramework.inspiredButchering = true;
@@ -144,9 +112,6 @@ namespace QualityFramework
             ModSettings_QFramework.skilledMining = false;
             ModSettings_QFramework.skilledStoneCutting = false;
 
-            //ModSettings_QFramework.lessRandomQuality = true;
-            //ModSettings_QFramework.minSkillEx = 10;
-            //ModSettings_QFramework.maxSkillAw = 17;
             ModSettings_QFramework.edificeQuality = true;
             ModSettings_QFramework.minEdificeQuality = 0;
             ModSettings_QFramework.maxEdificeQuality = 4;
@@ -196,6 +161,25 @@ namespace QualityFramework
             ModSettings_QFramework.shellQuality = false;
             ModSettings_QFramework.minShellQuality = 0;
             ModSettings_QFramework.maxShellQuality = 4;
+
+            //FixSilver();
         }
+
+        /*public static void FixSilver()
+        {
+            Log.Message("Fixing Silver");
+            ThingDef silver = ThingDefOf.Silver;
+            if (!silver.HasComp(typeof(CompQuality)))
+            {
+                return;
+            }
+            foreach (Map map in Find.Maps)
+            {
+                foreach (Thing thing in map.listerThings.ThingsMatching(ThingRequest.ForDef(ThingDefOf.Silver)))
+                {
+                    thing.TryGetComp<CompQuality>().SetQuality(QualityCategory.Normal, ArtGenerationContext.Outsider);
+                }
+            }
+        }*/
     }
 }

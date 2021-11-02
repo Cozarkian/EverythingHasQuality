@@ -26,6 +26,7 @@ namespace QualityFramework
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Ldloc, materialQuality);
+                    yield return new CodeInstruction(OpCodes.Ldnull);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Quality_Generator), "GenerateQualityCreatedByPawn"));
                 }
                 else

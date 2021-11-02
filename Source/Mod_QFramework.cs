@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using UnityEngine;
 using RimWorld;
 using Verse;
-using HarmonyLib;
 
 namespace QualityFramework
 {
@@ -21,10 +20,7 @@ namespace QualityFramework
 
         public Mod_QFramework(ModContentPack content) : base(content)
         {
-            //Mod_SettingsWindow.settings = 
             settings = GetSettings<ModSettings_QFramework>();
-            Harmony harmony = new Harmony("rimworld.qualityframework");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         public override string SettingsCategory()
@@ -34,10 +30,11 @@ namespace QualityFramework
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            if (ModSettings_QFramework.bldgDict == null) ModSettings_QFramework.bldgDict = new Dictionary<string, bool>();
-            if (ModSettings_QFramework.weapDict == null) ModSettings_QFramework.weapDict = new Dictionary<string, bool>();
-            if (ModSettings_QFramework.appDict == null) ModSettings_QFramework.appDict = new Dictionary<string, bool>();
-            if (ModSettings_QFramework.otherDict == null) ModSettings_QFramework.otherDict = new Dictionary<string, bool>();
+            ModSettings_QFramework.bldgDict ??= new Dictionary<string, bool>();
+            ModSettings_QFramework.weapDict ??= new Dictionary<string, bool>();
+            ModSettings_QFramework.appDict ??= new Dictionary<string, bool>();
+            ModSettings_QFramework.otherDict ??= new Dictionary<string, bool>();
+
             Rect labelRect = new Rect(5f, 34f, inRect.width * .5f, 42f);
             listing.Begin(labelRect);
             Text.Font = GameFont.Medium;
@@ -310,6 +307,7 @@ namespace QualityFramework
             listing.Begin(firstCol);
             listing.CheckboxLabeled("QFramework.Materials".Translate(), ref ModSettings_QFramework.useMaterialQuality);
             listing.CheckboxLabeled("QFramework.Tables".Translate(), ref ModSettings_QFramework.useTableQuality);
+            listing.CheckboxLabeled("QFramework.SkillReq".Translate(), ref ModSettings_QFramework.useSkillReq);
             listing.GapLine();
 
             listing.CheckboxLabeled("QFramework.SkilledAnimals".Translate(), ref ModSettings_QFramework.skilledAnimals);
@@ -331,6 +329,7 @@ namespace QualityFramework
                 listing.Gap(12);
             }
             else listing.Gap(48);
+            listing.Gap(24f);
             listing.GapLine();
 
             if (ModSettings_QFramework.stuffQuality)
@@ -364,6 +363,7 @@ namespace QualityFramework
                 listing.Gap(10);
             }
             else listing.Gap(48);
+            listing.Gap(24f);
             listing.GapLine();
             listing.CheckboxLabeled("QFramework.InspiredChemistry".Translate(), ref ModSettings_QFramework.inspiredChemistry);
             listing.CheckboxLabeled("QFramework.InspiredConstruction".Translate(), ref ModSettings_QFramework.inspiredConstruction);
@@ -388,7 +388,8 @@ namespace QualityFramework
                 ModSettings_QFramework.indivBuildings = false;
             }
             listing.End();
-            List<string> keyList = new List<string>(ModSettings_QFramework.bldgDict.Keys);
+            List<string> keyList = ModSettings_QFramework.bldgDict.Keys.ToList<string>();
+            keyList.Sort();
             string key;
             listing.Begin(new Rect(rect.width * .33f + 5f, 110f, rect.width * .33f - 5f, 30f));
             if (listing.ButtonText("QFramework.Select".Translate(), null))
@@ -428,17 +429,19 @@ namespace QualityFramework
                 bool value;
                 for (int k = 0; k < ModSettings_QFramework.bldgDict.Count; k++)
                 {
-                    key = keyList[k];
-                    ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(key);
-                    if (def.IsWithinCategory(ThingCategoryDef.Named("BuildingsFurniture"))
-                        || def.IsWithinCategory(ThingCategoryDef.Named("BuildingsProduction"))
-                        || def.IsWithinCategory(ThingCategoryDefOf.BuildingsArt))
+                    string key2 = keyList[k];
+                    ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(key2);
+                    if (def != null)
                     {
-                        list.Add(key);
+                        if (def.IsWithinCategory(ThingCategoryDef.Named("BuildingsFurniture"))
+                            || def.IsWithinCategory(ThingCategoryDef.Named("BuildingsProduction"))
+                            || def.IsWithinCategory(ThingCategoryDefOf.BuildingsArt))
+                        {
+                            list.Add(key2);
+                        }
+                        else other.Add(key2);
                     }
-                    else other.Add(key);
                 }
-
                 Rect scrollRect = new Rect(5f, 190f, rect.width * .5f - 10f, rect.height - 110f);
                 Rect viewRect = new Rect(0f, 0f, scrollRect.width - 30f, list.Count * 24f);
                 Widgets.BeginScrollView(scrollRect, ref bldgScroll, viewRect, true);
@@ -491,6 +494,7 @@ namespace QualityFramework
                 }
             }
             List<string> weapons = new List<string>(ModSettings_QFramework.weapDict.Keys);
+            weapons.Sort();
             string weap;
             if (listing.ButtonText("QFramework.Select".Translate(), null))
             {
@@ -545,6 +549,7 @@ namespace QualityFramework
                 }
             }
             List<string> apparel = new List<string>(ModSettings_QFramework.appDict.Keys);
+            apparel.Sort();
             string app;
             if (listing.ButtonText("QFramework.Select".Translate(), null))
             {
@@ -601,6 +606,7 @@ namespace QualityFramework
                 }
                 listing.End();
                 List<string> keyList = new List<string>(ModSettings_QFramework.otherDict.Keys);
+                keyList.Sort();
                 string key;
                 listing.Begin(new Rect(rect.width * .33f + 5f, 110f, rect.width * .33f - 5f, 30f));
                 if (listing.ButtonText("QFramework.Select".Translate(), null))
@@ -638,19 +644,26 @@ namespace QualityFramework
                     List<string> list = new List<string>();
                     List<string> other = new List<string>();
                     bool value;
-                    Log.Message("lists created");
+                    //Log.Message("lists created");
                     for (int k = 0; k < ModSettings_QFramework.otherDict.Count; k++)
                     {
-                        Log.Message("Filling lists");
+                        //Log.Message("Filling lists");
                         key = keyList[k];
                         ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(key);
-                        if (def.IsNutritionGivingIngestible)
+                        if (def != null)
                         {
-                            list.Add(key);
+                            if (def.IsDrug)
+                            {
+                                other.Add(key);
+                            }
+                            else if (def.IsNutritionGivingIngestible)
+                            {
+                                list.Add(key);
+                            }
+                            else other.Add(key);
                         }
-                        else other.Add(key);
                     }
-                    Log.Message("Displaying first scroll");
+                    //Log.Message("Displaying first scroll");
                     Rect scrollRect = new Rect(5f, 190f, rect.width * .5f - 10f, rect.height - 110f);
                     Rect viewRect = new Rect(0f, 0f, scrollRect.width - 30f, keyList.Count * 12f);
                     Widgets.BeginScrollView(scrollRect, ref foodScroll, viewRect, true);
@@ -664,7 +677,7 @@ namespace QualityFramework
                     }
                     listing.End();
                     Widgets.EndScrollView();
-                    Log.Message("Displaying second scroll");
+                    //Log.Message("Displaying second scroll");
                     Rect scrollRect2 = new Rect(rect.width * .5f + 5f, 190f, rect.width * .5f - 10f, rect.height - 110f);
                     Rect viewRect2 = new Rect(0f, 0f, scrollRect2.width - 30f, keyList.Count * 12f);
                     Widgets.BeginScrollView(scrollRect2, ref otherScroll, viewRect2, true);

@@ -12,3 +12,9 @@ P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityFramework\Source\obj\Debug
 P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityFramework\Source\obj\Debug\QualityFramework.csproj.CoreCompileInputs.cache
 P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityFramework\Source\obj\Debug\QualityFramework.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source\obj\Debug\QualityFramework.csprojAssemblyReference.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityFramework\Source - NormalSilver\obj\Debug\QualityFramework.csprojAssemblyReference.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityFramework\Source - NormalSilver\obj\Debug\QualityFramework.csproj.CoreCompileInputs.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityFramework\Source - NormalSilver\obj\Debug\QualityFramework.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source - NormalSilver\obj\Debug\QualityFramework.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source - NormalSilver\obj\Debug\QualityFramework.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source - NormalSilver\obj\Debug\QualityFramework.dll

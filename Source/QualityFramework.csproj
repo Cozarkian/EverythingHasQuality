@@ -5,6 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2B0698B0-6484-421F-82FE-B58A2BB7CCC8}</ProjectGuid>
+    <LangVersion>latest</LangVersion>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QualityFramework</RootNamespace>
@@ -61,11 +62,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Quality_CompPatch.cs" />
+    <Compile Include="TraderFixes.cs" />
     <Compile Include="Mod_SettingsUtility.cs" />
     <Compile Include="InspirationUtility.cs" />
     <Compile Include="Quality_Recipes.cs" />
     <Compile Include="DefOf_QFramework.cs" />
-    <Compile Include="DefPatch.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="ModSettings_QFramework.cs" />
     <Compile Include="Mod_QFramework.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

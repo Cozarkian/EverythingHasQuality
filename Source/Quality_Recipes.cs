@@ -14,6 +14,7 @@ namespace QualityFramework
     class Quality_Recipes
     {
         public static int SupplyQuality { get; set; } = -1;
+        static readonly FieldInfo minSkill = AccessTools.Field(typeof(RecipeDef), nameof(RecipeDef.skillRequirements));
 
         [HarmonyPatch(typeof(GenRecipe), "PostProcessProduct")]
         [HarmonyTranspiler]
@@ -48,6 +49,8 @@ namespace QualityFramework
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Quality_Recipes), "get_SupplyQuality"));
+                    yield return new CodeInstruction(OpCodes.Ldarg_1);
+                    yield return new CodeInstruction(OpCodes.Ldfld, minSkill);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Quality_Generator), "GenerateQualityCreatedByPawn"));
                 }
                 else

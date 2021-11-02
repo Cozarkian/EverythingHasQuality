@@ -1,75 +1,84 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using HarmonyLib;
 
 namespace QualityFramework
 {
-    [HarmonyPatch]
     public class Quality_Generator
     {
-        [HarmonyPatch(typeof(CompQuality), "SetQuality")]
-        [HarmonyPrefix]
-        public static void ApplyQualityLimits(CompQuality __instance, ref QualityCategory q)
+        public static QualityCategory GenerateQualityCreatedByPawn(Pawn pawn, SkillDef relevantSkill, Thing thing, int supplyQuality = -1, List<SkillRequirement> skillRequirements = null)
         {
-            int minQuality = GetMinQuality(__instance.parent);
-            int maxQuality = GetMaxQuality(__instance.parent);
-            if ((int)q < minQuality) q = (QualityCategory)minQuality;
-            if ((int)q > maxQuality) q = (QualityCategory)maxQuality;
-        }
-
-        public static QualityCategory GenerateQualityCreatedByPawn(Pawn pawn, SkillDef relevantSkill, Thing thing, int supplyQuality = -1)
-        {
-            //Log.Message("Applying custom quality");
-            QualityCategory qualityCategory;
-            int minQuality = GetMinQuality(thing);
-            int maxQuality = GetMaxQuality(thing);
+            //Log.Message("Applying custom quality with " + relevantSkill.label);
             if (ModSettings_QFramework.skilledStoneCutting && thing.HasThingCategory(ThingCategoryDefOf.StoneBlocks))
             {
                 relevantSkill = SkillDefOf.Crafting;
             }
-            if (relevantSkill == null ||
-               (!ModSettings_QFramework.skilledButchering && (thing.def.IsMeat || thing.def.IsLeather)))
+            if (relevantSkill == null || (!ModSettings_QFramework.skilledButchering && (thing.def.IsMeat || thing.def.IsLeather)))
             {
-                qualityCategory = QualityUtility.GenerateQuality(QualityGenerator.BaseGen);
+                return QualityUtility.GenerateQuality(QualityGenerator.BaseGen);
                 //Log.Message("Generated random quality for " + thing.LabelShort);
             }
-            else
+            QualityCategory qualityCategory;
+            int minQuality = GetMinQuality(thing);
+            int maxQuality = GetMaxQuality(thing);
+            int level = pawn.skills.GetSkill(relevantSkill).Level; //Log.Message(relevantSkill.label + " without supplies is level " + level);
+            if (ModSettings_QFramework.useSkillReq)
             {
-                int level = pawn.skills.GetSkill(relevantSkill).Level; //Log.Message(relevantSkill.label + " without supplies is level " + level);
-                InspirationDef inspirationDef = InspirationUtility.CheckInspired(thing.def, relevantSkill);
-                bool inspired = (inspirationDef != null && pawn.InspirationDef == inspirationDef);
-                if (ModSettings_QFramework.useMaterialQuality || ModSettings_QFramework.useTableQuality)
+                //Log.Message("Applying " + relevantSkill.label + " skill requirements.");
+                if (skillRequirements != null)
                 {
-                    if (supplyQuality >= 0)
+                    for (int sk = 0; sk < skillRequirements.Count; sk++)
                     {
-                        level += supplyQuality - Mathf.Min(maxQuality, ModSettings_QFramework.stdSupplyQuality);
-                    }
-                    level = Mathf.Clamp(level, 0, 20); //Log.Message("Level with supplies is " + level.ToString());
-                }
-                /*if (ModSettings_QFramework.lessRandomQuality)
-                {
-                    maxQuality = Mathf.Min(maxQuality, Mathf.Max(level - ModSettings_QFramework.minSkillEx + 4, minQuality + 1));
-                    minQuality = Mathf.Max(minQuality, Mathf.Min(2, maxQuality - 1, level - ModSettings_QFramework.maxSkillAw));
-                }*/
-                qualityCategory = QualityUtility.GenerateQualityCreatedByPawn(level, inspired);
-                if (ModsConfig.IdeologyActive && pawn.Ideo != null)
-                {
-                    Precept_Role role = pawn.Ideo.GetRole(pawn);
-                    if (role != null && role.def.roleEffects != null)
-                    {
-                        RoleEffect roleEffect = role.def.roleEffects.FirstOrDefault((RoleEffect eff) => eff is RoleEffect_ProductionQualityOffset);
-                        if (roleEffect != null)
-                        {
-                            qualityCategory = (QualityCategory)Mathf.Min((int)(qualityCategory + (byte)((RoleEffect_ProductionQualityOffset)roleEffect).offset), 6);
-                        }
+                        level -= skillRequirements[sk].minLevel;
                     }
                 }
-                if (inspired && maxQuality > 4)
+                else if (relevantSkill == SkillDefOf.Plants)
                 {
-                    pawn.mindState.inspirationHandler.EndInspiration(inspirationDef);
+                    int plantSkill = 0;
+                    foreach (var plantDef in DefDatabase<ThingDef>.AllDefsListForReading.Where(def => def.plant?.sowMinSkill != null))
+                    {
+                        if (plantDef.plant.harvestedThingDef == thing.def) plantSkill = Mathf.Max(plantSkill, plantDef.plant.sowMinSkill);
+                    }
+                    level -= plantSkill;
+                    //Log.Message("Deducted " + plantSkill + " from harvest quality");
                 }
+                else if (thing.def is BuildableDef)
+                {
+                    level -= thing.def.constructionSkillPrerequisite;
+                    //Log.Message("Deducting " + thing.def.constructionSkillPrerequisite / 2 + " from construction skill level");
+                }
+            }
+            InspirationDef inspirationDef = InspirationUtility.CheckInspired(thing.def, relevantSkill);
+            bool inspired = (inspirationDef != null && pawn.InspirationDef == inspirationDef);
+            
+            if (ModSettings_QFramework.useMaterialQuality || ModSettings_QFramework.useTableQuality)
+            {
+                if (supplyQuality >= 0)
+                {
+                    level += supplyQuality - Mathf.Min(maxQuality, ModSettings_QFramework.stdSupplyQuality);
+                }
+                level = Mathf.Clamp(level, 0, 20); //Log.Message("Level with supplies is " + level.ToString());
+            }
+
+            qualityCategory = QualityUtility.GenerateQualityCreatedByPawn(level, inspired);
+            if (ModsConfig.IdeologyActive && pawn.Ideo != null)
+            {
+                Precept_Role role = pawn.Ideo.GetRole(pawn);
+                if (role != null && role.def.roleEffects != null)
+                {
+                    RoleEffect roleEffect = role.def.roleEffects.FirstOrDefault((RoleEffect eff) => eff is RoleEffect_ProductionQualityOffset);
+                    if (roleEffect != null)
+                    {
+                        qualityCategory = (QualityCategory)Mathf.Min((int)(qualityCategory + (byte)((RoleEffect_ProductionQualityOffset)roleEffect).offset), 6);
+                    }
+                }
+            }
+            if (inspired && maxQuality > 4)
+            {
+                pawn.mindState.inspirationHandler.EndInspiration(inspirationDef);
             }
             return (QualityCategory)Mathf.Clamp((int)qualityCategory, minQuality, maxQuality);
         }
