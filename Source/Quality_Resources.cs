@@ -7,7 +7,7 @@ using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace QualityFramework
+namespace QualityEverything
 {
     [HarmonyPatch]
     class Quality_Resources
@@ -100,7 +100,7 @@ namespace QualityFramework
             //Log.Message("Choosing quality generator");
             QualityCategory qc = QualityCategory.Normal;
             if (worker != null && relevantSkill != null &&
-               ((relevantSkill == SkillDefOf.Mining && ModSettings_QFramework.skilledMining) || (relevantSkill == SkillDefOf.Plants && ModSettings_QFramework.skilledHarvesting) || (relevantSkill == SkillDefOf.Animals && ModSettings_QFramework.skilledAnimals)))
+               ((relevantSkill == SkillDefOf.Mining && ModSettings_QEverything.skilledMining) || (relevantSkill == SkillDefOf.Plants && ModSettings_QEverything.skilledHarvesting) || (relevantSkill == SkillDefOf.Animals && ModSettings_QEverything.skilledAnimals)))
             {
                 qc = Quality_Generator.GenerateQualityCreatedByPawn(worker, relevantSkill, thing);
             }

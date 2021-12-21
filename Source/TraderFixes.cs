@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using HarmonyLib;
 
-namespace QualityFramework
+namespace QualityEverything
 { 
     public class TraderFixes
     {
+        //Traders only carry normal silver
         public static void TraderSilverFix(ThingWithComps __instance)
         {
             if (__instance.def == ThingDefOf.Silver)
@@ -17,7 +17,8 @@ namespace QualityFramework
             }
         }
 
-        public static bool CurrencyFix(bool __result, Tradeable __instance)
+        //Only normal silver is currency
+        public static bool IsCurrencyFix(bool __result, Tradeable __instance)
         {
             if (__result && __instance.ThingDef == ThingDefOf.Silver && __instance.ThingDef.HasComp(typeof(CompQuality)))
             {
@@ -28,6 +29,7 @@ namespace QualityFramework
             return __result;
         }
 
+        //Tradeable currency for a session can only be favor or normal quality silver
         public static bool QualityCurrencyTradeable(ref Tradeable __result, TradeDeal __instance, List<Tradeable> ___tradeables)
         {
             for (int i = 0; i < ___tradeables.Count; i++)
@@ -52,6 +54,7 @@ namespace QualityFramework
             return false;
         }
 
+        //Silver price is the same for buying or selling; allows conversion of silver to different quality
         public static bool SilverValueFix(Tradeable __instance)
         {
             if (__instance.ThingDef == ThingDefOf.Silver)
@@ -67,7 +70,7 @@ namespace QualityFramework
         { 
             if (def == ThingDefOf.Silver)
             {
-                __result = 0f;
+                __result = -20f;
             }        
         }
     }

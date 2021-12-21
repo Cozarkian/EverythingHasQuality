@@ -1,0 +1,38 @@
+[12/20/21]
+Changed name because mod is not an actual framework.
+Added configuration options for resources.
+Fixed bug cutting off scroll window for foods.
+Added button to apply certain setting changes without need for restart.
+Performance optimizations.
+
+[11/5/2021]
+Fixed bug with pawns being trying to carrying multiple qualities of items for construction.
+
+[11/2/2021]
+New Option: Minimum skill requirements for buildings and recipes apply a negative skill modifier.
+
+[11/1/2021]
+Fixed silver for trading.
+	Normal quality silver remains currency.
+	Other qualities must be sold like trade items for quality-adjusted base value.
+	Traders only have normal quality silver.
+When added to existing game, new qualities will be normal instead of awful.
+Fixed bug when using skills to determine quality of resources.
+Sorted lists for individual qualities.
+	
+[10/28/2021]
+Temporary fix to trader bug by making all silver normal qualiyt.
+
+
+[10/17/2021]
+Added customization options for individual items.
+
+[10/15/2021]
+Added options for security/turrets, weapons, apparel, shells/grenades, raw tasty foods.
+
+[10/13/2021]
+Configurable quality for: work tables, other buildings, stuff, meals, food, drugs, and medicine.
+Configurable options for skills/materials to affect quality.
+Configurable options for additional inspirations. 
+
+WorkshopID: 2627433311

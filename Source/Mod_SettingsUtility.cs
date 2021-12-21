@@ -3,7 +3,7 @@ using RimWorld;
 using Verse;
 using Verse.Sound;
 
-namespace QualityFramework
+namespace QualityEverything
 {
     class Mod_SettingsUtility
     {
@@ -26,6 +26,21 @@ namespace QualityFramework
             Widgets.TextFieldNumeric<int>(new Rect(rect.xMax - 60f, rect.yMin, 25f, rect.height), ref value, ref editBuffer, min, max);
         }
 
+        public static void PopulateStuff()
+        {
+            ThingDef def;
+            bool hasComp;
+            for (int i = 0; i < DefDatabase<ThingDef>.AllDefsListForReading.Count; i++)
+            {
+                def = DefDatabase<ThingDef>.AllDefsListForReading[i];
+                hasComp = def.HasComp(typeof(CompQuality));
+                if (def.IsStuff)
+                {
+                    if (!ModSettings_QEverything.stuffDict.ContainsKey(def.defName)) ModSettings_QEverything.stuffDict.Add(def.defName, hasComp);
+                }
+            }
+        }
+
         public static void PopulateBuildings()
         {
             ThingDef def;
@@ -36,7 +51,7 @@ namespace QualityFramework
                 hasComp = def.HasComp(typeof(CompQuality));
                 if (def.building != null)
                 {
-                    if (!def.IsBlueprint && !def.IsFrame && !ModSettings_QFramework.bldgDict.ContainsKey(def.defName)) ModSettings_QFramework.bldgDict.Add(def.defName, hasComp);
+                    if (!def.IsBlueprint && !def.IsFrame && !ModSettings_QEverything.bldgDict.ContainsKey(def.defName)) ModSettings_QEverything.bldgDict.Add(def.defName, hasComp);
                 }
             }
         }
@@ -52,7 +67,7 @@ namespace QualityFramework
                 if ((def.IsWeapon || def.IsShell || def.IsWithinCategory(ThingCategoryDef.Named("Grenades"))) && !def.IsIngestible && !def.IsStuff)
                 {
                     //Log.Message(def.defName + " is a weapon");
-                    if (!ModSettings_QFramework.weapDict.ContainsKey(def.defName)) ModSettings_QFramework.weapDict.Add(def.defName, hasComp);
+                    if (!ModSettings_QEverything.weapDict.ContainsKey(def.defName)) ModSettings_QEverything.weapDict.Add(def.defName, hasComp);
                 }
             }
         }
@@ -67,7 +82,7 @@ namespace QualityFramework
                 hasComp = def.HasComp(typeof(CompQuality));
                 if (def.IsApparel)
                 {
-                    if (!ModSettings_QFramework.appDict.ContainsKey(def.defName)) ModSettings_QFramework.appDict.Add(def.defName, hasComp);
+                    if (!ModSettings_QEverything.appDict.ContainsKey(def.defName)) ModSettings_QEverything.appDict.Add(def.defName, hasComp);
                 }
             }
         }
@@ -83,84 +98,101 @@ namespace QualityFramework
                 if (def.IsWithinCategory(ThingCategoryDefOf.Manufactured) || def.IsDrug || def.IsMedicine || def.IsIngestible)
                 {
                     if (def.IsStuff || def.IsCorpse || def.plant != null || def.IsShell) continue;
-                    else if (!ModSettings_QFramework.otherDict.ContainsKey(def.defName)) ModSettings_QFramework.otherDict.Add(def.defName, hasComp);
+                    else if (!ModSettings_QEverything.otherDict.ContainsKey(def.defName)) ModSettings_QEverything.otherDict.Add(def.defName, hasComp);
                 }
             }
             //Log.Message("Other dictionary has " + ModSettings_QFramework.otherDict.Count + " items");
         }
 
+        public static void ApplySettingsChanges()
+        {
+            if (Startup.stuffPatchRan && !ModSettings_QEverything.stuffQuality && !ModSettings_QEverything.indivStuff)
+            {
+                Find.WindowStack.Add(new Window_RestartWarning("QEverything.RestartStuff".Translate()));
+                return;
+            }
+            else if (!Startup.stuffPatchRan && (ModSettings_QEverything.stuffQuality || ModSettings_QEverything.indivStuff))
+            {
+                Find.WindowStack.Add(new Window_RestartWarning("QEverything.RestartStuff".Translate()));
+                return;
+            }
+            Quality_CompPatch.DefPatch();
+            Quality_CompPatch.ApplyNewQuality();
+            Find.WindowStack.Add(new Window_RestartWarning("QEverything.Restart".Translate()));
+        }
+
         public static void RestoreDefaults()
         {
-            ModSettings_QFramework.useMaterialQuality = true;
-            ModSettings_QFramework.useTableQuality = true;
-            ModSettings_QFramework.useSkillReq = true;
-            ModSettings_QFramework.stdSupplyQuality = 0;
-            ModSettings_QFramework.tableFactor = .4f;
+            ModSettings_QEverything.useMaterialQuality = true;
+            ModSettings_QEverything.useTableQuality = true;
+            ModSettings_QEverything.useSkillReq = true;
+            ModSettings_QEverything.stdSupplyQuality = 0;
+            ModSettings_QEverything.tableFactor = .4f;
 
-            ModSettings_QFramework.inspiredButchering = true;
-            ModSettings_QFramework.inspiredChemistry = true;
-            ModSettings_QFramework.inspiredCooking = true;
-            ModSettings_QFramework.inspiredConstruction = true;
-            ModSettings_QFramework.inspiredGathering = true;
-            ModSettings_QFramework.inspiredHarvesting = true;
-            ModSettings_QFramework.inspiredMining = true;
-            ModSettings_QFramework.inspiredStonecutting = true;
+            ModSettings_QEverything.inspiredButchering = true;
+            ModSettings_QEverything.inspiredChemistry = true;
+            ModSettings_QEverything.inspiredCooking = true;
+            ModSettings_QEverything.inspiredConstruction = true;
+            ModSettings_QEverything.inspiredGathering = true;
+            ModSettings_QEverything.inspiredHarvesting = true;
+            ModSettings_QEverything.inspiredMining = true;
+            ModSettings_QEverything.inspiredStonecutting = true;
 
-            ModSettings_QFramework.skilledAnimals = false;
-            ModSettings_QFramework.skilledButchering = false;
-            ModSettings_QFramework.skilledHarvesting = false;
-            ModSettings_QFramework.skilledMining = false;
-            ModSettings_QFramework.skilledStoneCutting = false;
+            ModSettings_QEverything.skilledAnimals = false;
+            ModSettings_QEverything.skilledButchering = false;
+            ModSettings_QEverything.skilledHarvesting = false;
+            ModSettings_QEverything.skilledMining = false;
+            ModSettings_QEverything.skilledStoneCutting = false;
 
-            ModSettings_QFramework.edificeQuality = true;
-            ModSettings_QFramework.minEdificeQuality = 0;
-            ModSettings_QFramework.maxEdificeQuality = 4;
+            ModSettings_QEverything.edificeQuality = true;
+            ModSettings_QEverything.minEdificeQuality = 0;
+            ModSettings_QEverything.maxEdificeQuality = 4;
 
-            ModSettings_QFramework.workQuality = true;
-            ModSettings_QFramework.minWorkQuality = 0;
-            ModSettings_QFramework.maxWorkQuality = 4;
+            ModSettings_QEverything.workQuality = true;
+            ModSettings_QEverything.minWorkQuality = 0;
+            ModSettings_QEverything.maxWorkQuality = 4;
 
-            ModSettings_QFramework.securityQuality = true;
-            ModSettings_QFramework.minSecurityQuality = 0;
-            ModSettings_QFramework.maxSecurityQuality = 4;
+            ModSettings_QEverything.securityQuality = true;
+            ModSettings_QEverything.minSecurityQuality = 0;
+            ModSettings_QEverything.maxSecurityQuality = 4;
 
-            ModSettings_QFramework.stuffQuality = true;
-            ModSettings_QFramework.minStuffQuality = 0;
-            ModSettings_QFramework.maxStuffQuality = 4;
+            ModSettings_QEverything.stuffQuality = true;
+            ModSettings_QEverything.minStuffQuality = 0;
+            ModSettings_QEverything.maxStuffQuality = 4;
 
-            ModSettings_QFramework.ingredientQuality = true;
-            ModSettings_QFramework.minIngQuality = 2;
-            ModSettings_QFramework.maxIngQuality = 4;
-            ModSettings_QFramework.minTastyQuality = 0;
-            ModSettings_QFramework.maxTastyQuality = 4;
+            ModSettings_QEverything.ingredientQuality = true;
+            ModSettings_QEverything.minIngQuality = 2;
+            ModSettings_QEverything.maxIngQuality = 4;
+            ModSettings_QEverything.minTastyQuality = 0;
+            ModSettings_QEverything.maxTastyQuality = 4;
 
-            ModSettings_QFramework.mealQuality = false;
-            ModSettings_QFramework.minMealQuality = 0;
-            ModSettings_QFramework.maxMealQuality = 4;
+            ModSettings_QEverything.mealQuality = false;
+            ModSettings_QEverything.minMealQuality = 0;
+            ModSettings_QEverything.maxMealQuality = 4;
 
-            ModSettings_QFramework.drugQuality = false;
-            ModSettings_QFramework.minDrugQuality = 0;
-            ModSettings_QFramework.maxDrugQuality = 4;
+            ModSettings_QEverything.drugQuality = false;
+            ModSettings_QEverything.minDrugQuality = 0;
+            ModSettings_QEverything.maxDrugQuality = 4;
 
-            ModSettings_QFramework.medQuality = false;
-            ModSettings_QFramework.minMedQuality = 0;
-            ModSettings_QFramework.maxMedQuality = 4;
+            ModSettings_QEverything.medQuality = false;
+            ModSettings_QEverything.minMedQuality = 0;
+            ModSettings_QEverything.maxMedQuality = 4;
 
-            ModSettings_QFramework.manufQuality = true;
-            ModSettings_QFramework.minManufQuality = 0;
-            ModSettings_QFramework.maxManufQuality = 4;
+            ModSettings_QEverything.manufQuality = true;
+            ModSettings_QEverything.minManufQuality = 0;
+            ModSettings_QEverything.maxManufQuality = 4;
 
-            ModSettings_QFramework.apparelQuality = false;
-            ModSettings_QFramework.minApparelQuality = 0;
-            ModSettings_QFramework.maxApparelQuality = 6;
+            ModSettings_QEverything.apparelQuality = false;
+            ModSettings_QEverything.minApparelQuality = 0;
+            ModSettings_QEverything.maxApparelQuality = 6;
 
-            ModSettings_QFramework.weaponQuality = false;
-            ModSettings_QFramework.minWeaponQuality = 0;
-            ModSettings_QFramework.maxWeaponQuality = 6;
+            ModSettings_QEverything.weaponQuality = false;
+            ModSettings_QEverything.minWeaponQuality = 0;
+            ModSettings_QEverything.maxWeaponQuality = 6;
 
-            ModSettings_QFramework.shellQuality = false;
-            ModSettings_QFramework.minShellQuality = 0;
-            ModSettings_QFramework.maxShellQuality = 4;
+            ModSettings_QEverything.shellQuality = false;
+            ModSettings_QEverything.minShellQuality = 0;
+            ModSettings_QEverything.maxShellQuality = 4;
 
             //FixSilver();
         }

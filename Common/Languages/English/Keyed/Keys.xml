@@ -1,50 +1,70 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <LanguageData>
-	<QFramework.Tab0>Category Limits</QFramework.Tab0>
-	<QFramework.Tab1>Skill &amp; Inspiration</QFramework.Tab1>
-	<QFramework.Tab2>Indiv. Buildings</QFramework.Tab2>
-	<QFramework.Tab3>Indiv. Weap &amp; Apparel</QFramework.Tab3>
-	<QFramework.Tab4>Indiv. Other</QFramework.Tab4>
+	<QEverything.Tab0>Category Limits</QEverything.Tab0>
+	<QEverything.Tab1>Skill &amp; Inspiration</QEverything.Tab1>
+	<QEverything.Tab2>Resources</QEverything.Tab2>
+	<QEverything.Tab3>Buildings</QEverything.Tab3>
+	<QEverything.Tab4>Weap &amp; Apparel</QEverything.Tab4>
+	<QEverything.Tab5>Other</QEverything.Tab5>
+	
+	<QEverything.ApplyCat>Add quality to new item categories</QEverything.ApplyCat>
+	<QEverything.Restart>Notice: A restart may be required to remove quality.</QEverything.Restart>
+	<QEverything.RestartStuff>Warning: Detected changes to stuff quality. A restart is required.</QEverything.RestartStuff>
+	<QEverything.CatDef>Restore Category Defaults</QEverything.CatDef>
+	<QEverything.IndDef>Reset All Individual Defaults</QEverything.IndDef>
+	<QEverything.Enable>Enable:</QEverything.Enable>
+	<QEverything.Disable>Disable:</QEverything.Disable>
+	<QEverything.Select>Select All</QEverything.Select>
+	<QEverything.Deselect>Deselect All</QEverything.Deselect>
+	<QEverything.Min>Min Quality: </QEverything.Min>
+	<QEverything.Max>Max Quality: </QEverything.Max>
 
-	<QFramework.Enable>Enable:</QFramework.Enable>
-	<QFramework.Disable>Disable:</QFramework.Disable>
-	<QFramework.Select>Select All</QFramework.Select>
-	<QFramework.Deselect>Deselect All</QFramework.Deselect>
-	<QFramework.Min>Min Quality: </QFramework.Min>
-	<QFramework.Max>Max Quality: </QFramework.Max>
+	<QEverything.Resources>Stuff:</QEverything.Resources>
+	<QEverything.Textiles>Textiles:</QEverything.Textiles>
+	<QEverything.OtherRes>Other Resources:</QEverything.OtherRes>
 
-	<QFramework.Work>Work Tables</QFramework.Work>
-	<QFramework.Security>Security Buildings</QFramework.Security>
-	<QFramework.Edifice>Other Buildings and Construction</QFramework.Edifice>
-	<QFramework.Stuff>Stuff and Resources</QFramework.Stuff>
-	<QFramework.Meal>Meals</QFramework.Meal>
-	<QFramework.Ingredients>Crops, Meat, and other Food</QFramework.Ingredients>
-	<QFramework.Tasty>Fruit and other Raw Tasty Foods</QFramework.Tasty>
-	<QFramework.Drugs>Drugs and Alcohol</QFramework.Drugs>
-	<QFramework.Med>Medicine</QFramework.Med>
-	<QFramework.Manuf>Manufactured Goods</QFramework.Manuf>
-	<QFramework.Apparel>Apparel (additional to vanilla)</QFramework.Apparel>
-	<QFramework.Weapons>Weapons (additional to vanilla)</QFramework.Weapons>
-	<QFramework.Shells>Shells</QFramework.Shells>
+	<QEverything.Buildings>Buildings:</QEverything.Buildings>
+	<QEverything.Furniture>Furniture, Production &amp; Art:</QEverything.Furniture>
+	<QEverything.Power>Power, Security &amp; Other:</QEverything.Power>
 	
-	<QFramework.Materials>Resources/Ingredients Affect Quality</QFramework.Materials>
-	<QFramework.Tables>Work Tables Affect Quality</QFramework.Tables>
-	<QFramework.SkillReq>Skill Requirements Affect Quality</QFramework.SkillReq>
-	<QFramework.Standard>Std Quality: </QFramework.Standard>
+	<QEverything.WeapShells>Weapons &amp; Shells:</QEverything.WeapShells>
+	<QEverything.Clothing>Apparel:</QEverything.Clothing>
 	
-	<QFramework.SkilledAnimals>Skills Affect Quality of Animal Products</QFramework.SkilledAnimals>
-	<QFramework.SkilledButchering>Skills Affect Quality of Meat and Leather</QFramework.SkilledButchering>
-	<QFramework.SkilledHarvesting>Skills Affect Quality of Crops</QFramework.SkilledHarvesting>
-	<QFramework.SkilledMining>Skills Affect Quality of Mined Ore</QFramework.SkilledMining>
-	<QFramework.SkilledStoneCutting>Skills Affect Quality of Stonecutting</QFramework.SkilledStoneCutting>
+	<QEverything.Food>Food:</QEverything.Food>
+	<QEverything.OtherFood>Drugs, Medicine &amp; Manufactured:</QEverything.OtherFood>
 	
-	<QFramework.InspiredButchering>Enable butchering inspiration</QFramework.InspiredButchering>
-	<QFramework.InspiredChemistry>Enable chemistry inspiration</QFramework.InspiredChemistry>
-	<QFramework.InspiredConstruction>Enable construction inspiration</QFramework.InspiredConstruction>
-	<QFramework.InspiredCooking>Enable cooking inspiration</QFramework.InspiredCooking>
-	<QFramework.InspiredGathering>Enable animal gathering inspiration</QFramework.InspiredGathering>
-	<QFramework.InspiredHarvesting>Enable harvesting inspiration</QFramework.InspiredHarvesting>
-	<QFramework.InspiredMining>Enable mining inspiration</QFramework.InspiredMining>
-	<QFramework.InspiredStonecutting>Enable stonecutting inspiration</QFramework.InspiredStonecutting>
+	<QEverything.Work>Work Tables</QEverything.Work>
+	<QEverything.Security>Security Buildings</QEverything.Security>
+	<QEverything.Edifice>Other Buildings and Construction</QEverything.Edifice>
+	<QEverything.Stuff>Stuff and Resources</QEverything.Stuff>
+	<QEverything.Meal>Meals</QEverything.Meal>
+	<QEverything.Ingredients>Crops, Meat, and other Food</QEverything.Ingredients>
+	<QEverything.Tasty>Fruit and other Raw Tasty Foods</QEverything.Tasty>
+	<QEverything.Drugs>Drugs and Alcohol</QEverything.Drugs>
+	<QEverything.Med>Medicine</QEverything.Med>
+	<QEverything.Manuf>Manufactured Goods</QEverything.Manuf>
+	<QEverything.Apparel>Apparel (additional to vanilla)</QEverything.Apparel>
+	<QEverything.Weapons>Weapons (additional to vanilla)</QEverything.Weapons>
+	<QEverything.Shells>Shells</QEverything.Shells>
+	
+	<QEverything.Materials>Resources/Ingredients Affect Quality</QEverything.Materials>
+	<QEverything.Tables>Work Tables Affect Quality</QEverything.Tables>
+	<QEverything.SkillReq>Skill Requirements Affect Quality</QEverything.SkillReq>
+	<QEverything.Standard>Std Quality: </QEverything.Standard>
+	
+	<QEverything.SkilledAnimals>Skills Affect Quality of Animal Products</QEverything.SkilledAnimals>
+	<QEverything.SkilledButchering>Skills Affect Quality of Meat and Leather</QEverything.SkilledButchering>
+	<QEverything.SkilledHarvesting>Skills Affect Quality of Crops</QEverything.SkilledHarvesting>
+	<QEverything.SkilledMining>Skills Affect Quality of Mined Ore</QEverything.SkilledMining>
+	<QEverything.SkilledStoneCutting>Skills Affect Quality of Stonecutting</QEverything.SkilledStoneCutting>
+	
+	<QEverything.InspiredButchering>Enable butchering inspiration</QEverything.InspiredButchering>
+	<QEverything.InspiredChemistry>Enable chemistry inspiration</QEverything.InspiredChemistry>
+	<QEverything.InspiredConstruction>Enable construction inspiration</QEverything.InspiredConstruction>
+	<QEverything.InspiredCooking>Enable cooking inspiration</QEverything.InspiredCooking>
+	<QEverything.InspiredGathering>Enable animal gathering inspiration</QEverything.InspiredGathering>
+	<QEverything.InspiredHarvesting>Enable harvesting inspiration</QEverything.InspiredHarvesting>
+	<QEverything.InspiredMining>Enable mining inspiration</QEverything.InspiredMining>
+	<QEverything.InspiredStonecutting>Enable stonecutting inspiration</QEverything.InspiredStonecutting>
 </LanguageData>

@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 
-namespace QualityFramework
+namespace QualityEverything
 {
     [DefOf]
     public static class DefOf_QFramework
