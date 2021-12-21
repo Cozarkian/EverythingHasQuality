@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Excluded>
-    <exclude>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source</exclude>
+    <exclude>P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityEverything\Source</exclude>
   </Excluded>
 </Configuration>

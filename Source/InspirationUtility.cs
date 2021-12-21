@@ -2,7 +2,7 @@
 using Verse;
 using HarmonyLib;
 
-namespace QualityFramework
+namespace QualityEverything
 {
     [HarmonyPatch(typeof(InspirationWorker), "CommonalityFor")]
     class InspirationUtility
@@ -12,7 +12,7 @@ namespace QualityFramework
             InspirationDef inspiration = __instance.def;
             if (inspiration == DefOf_QFramework.QF_Inspired_Butchering)
             {
-                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredButchering && ModSettings_QFramework.skilledButchering)
+                if (ModSettings_QEverything.stuffQuality && ModSettings_QEverything.inspiredButchering && ModSettings_QEverything.skilledButchering)
                 {
                     return __result;
                 }
@@ -20,7 +20,7 @@ namespace QualityFramework
             }
             if (inspiration == DefOf_QFramework.QF_Inspired_Gathering)
             {
-                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredGathering && ModSettings_QFramework.skilledAnimals)
+                if (ModSettings_QEverything.stuffQuality && ModSettings_QEverything.inspiredGathering && ModSettings_QEverything.skilledAnimals)
                 {
                     return __result;
                 }
@@ -28,7 +28,7 @@ namespace QualityFramework
             }
             if (inspiration == DefOf_QFramework.QF_Inspired_Harvesting)
             {
-                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredHarvesting && ModSettings_QFramework.skilledHarvesting)
+                if (ModSettings_QEverything.stuffQuality && ModSettings_QEverything.inspiredHarvesting && ModSettings_QEverything.skilledHarvesting)
                 {
                     return __result;
                 }
@@ -36,7 +36,7 @@ namespace QualityFramework
             }
             if (inspiration == DefOf_QFramework.QF_Inspired_Mining)
             {
-                if (ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredMining && ModSettings_QFramework.skilledMining)
+                if (ModSettings_QEverything.stuffQuality && ModSettings_QEverything.inspiredMining && ModSettings_QEverything.skilledMining)
                 {
                     return __result;
                 }
@@ -44,7 +44,7 @@ namespace QualityFramework
             }
             if (inspiration == DefOf_QFramework.QF_Inspired_Stonecutting)
             { 
-                if(ModSettings_QFramework.stuffQuality && ModSettings_QFramework.inspiredStonecutting && ModSettings_QFramework.skilledStoneCutting)
+                if(ModSettings_QEverything.stuffQuality && ModSettings_QEverything.inspiredStonecutting && ModSettings_QEverything.skilledStoneCutting)
                 { 
                     return __result;
                 }
@@ -52,7 +52,7 @@ namespace QualityFramework
             }
             if (inspiration == DefOf_QFramework.QF_Inspired_Chemistry)
             {
-                if (ModSettings_QFramework.inspiredChemistry && (ModSettings_QFramework.drugQuality || ModSettings_QFramework.medQuality))
+                if (ModSettings_QEverything.inspiredChemistry && (ModSettings_QEverything.drugQuality || ModSettings_QEverything.medQuality))
                 {
                     return __result;
                 }
@@ -60,7 +60,7 @@ namespace QualityFramework
             }
             if (inspiration == DefOf_QFramework.QF_Inspired_Construction)
             {
-                if (ModSettings_QFramework.inspiredConstruction && (ModSettings_QFramework.edificeQuality || ModSettings_QFramework.workQuality || ModSettings_QFramework.securityQuality))
+                if (ModSettings_QEverything.inspiredConstruction && (ModSettings_QEverything.edificeQuality || ModSettings_QEverything.workQuality || ModSettings_QEverything.securityQuality))
                 {
                     return __result;
                 }
@@ -69,7 +69,7 @@ namespace QualityFramework
             }
             if (inspiration == DefOf_QFramework.QF_Inspired_Cooking)
             {
-                if (ModSettings_QFramework.inspiredCooking && ModSettings_QFramework.mealQuality)
+                if (ModSettings_QEverything.inspiredCooking && ModSettings_QEverything.mealQuality)
                 {
                     return __result;
                 }
