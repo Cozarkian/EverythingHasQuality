@@ -1,0 +1,8 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Common\Assemblies\QualityEverything.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source\obj\Debug\QualityEverything.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source\obj\Debug\QualityEverything.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\QualityFramework\Source\obj\Debug\QualityEverything.dll
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityEverything\Common\Assemblies\QualityEverything.dll
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityEverything\Source\obj\Debug\QualityEverything.csprojAssemblyReference.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityEverything\Source\obj\Debug\QualityEverything.csproj.CoreCompileInputs.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityEverything\Source\obj\Debug\QualityEverything.dll

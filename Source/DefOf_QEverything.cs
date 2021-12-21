@@ -1,9 +1,9 @@
 ﻿using RimWorld;
 
-namespace QualityFramework
+namespace QualityEverything
 {
     [DefOf]
-    public static class DefOf_QFramework
+    public static class DefOf_QEverything
     {
         public static InspirationDef QF_Inspired_Butchering;
         public static InspirationDef QF_Inspired_Chemistry;
@@ -14,9 +14,9 @@ namespace QualityFramework
         public static InspirationDef QF_Inspired_Mining;
         public static InspirationDef QF_Inspired_Stonecutting;
 
-        static DefOf_QFramework()
+        static DefOf_QEverything()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(DefOf_QFramework));
+            DefOfHelper.EnsureInitializedInCtor(typeof(DefOf_QEverything));
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace QualityFramework
+namespace QualityEverything
 {
-    public class ModSettings_QFramework : ModSettings
+    public class ModSettings_QEverything : ModSettings
     {
 
         public static bool useMaterialQuality = true;
@@ -77,10 +77,15 @@ namespace QualityFramework
         public static int minShellQuality = 0;
         public static int maxShellQuality = 4;
 
+        public static bool indivStuff = false;
         public static bool indivBuildings = false;
         public static bool indivWeapons = false;
         public static bool indivApparel = false;
         public static bool indivOther = false;
+
+        public static Dictionary<string, bool> stuffDict = new Dictionary<string, bool>();
+        public static List<string> stuffKeys = new List<string>();
+        public static List<bool> stuffValues = new List<bool>();
 
         public static Dictionary<string, bool> bldgDict = new Dictionary<string, bool>();
         public static List<string> bldgKeys = new List<string>();
@@ -170,10 +175,13 @@ namespace QualityFramework
             Scribe_Values.Look(ref minShellQuality, "minShellQuality", 0);
             Scribe_Values.Look(ref maxShellQuality, "maxShellQuality", 4);
 
+            Scribe_Values.Look(ref indivStuff, "indivStuff", false);
             Scribe_Values.Look(ref indivBuildings, "indivBuildings", false);
             Scribe_Values.Look(ref indivWeapons, "indivWeapons", false);
             Scribe_Values.Look(ref indivApparel, "indivApparel", false);
             Scribe_Values.Look(ref indivOther, "indivOther", false);
+
+            Scribe_Collections.Look<string, bool>(ref stuffDict, "stuffDict", LookMode.Value, LookMode.Value, ref stuffKeys, ref stuffValues);
             Scribe_Collections.Look<string, bool>(ref bldgDict, "bldgDict", LookMode.Value, LookMode.Value, ref bldgKeys, ref bldgValues);
             Scribe_Collections.Look<string, bool>(ref weapDict, "weapDict", LookMode.Value, LookMode.Value, ref weapKeys, ref weapValues);
             Scribe_Collections.Look<string, bool>(ref appDict, "appDict", LookMode.Value, LookMode.Value, ref appKeys, ref appValues);

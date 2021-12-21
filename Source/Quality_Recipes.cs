@@ -8,7 +8,7 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 
-namespace QualityFramework
+namespace QualityEverything
 {
     [HarmonyPatch]
     class Quality_Recipes
@@ -45,7 +45,7 @@ namespace QualityFramework
                         j++;
                     }
                 }
-                else if (code.opcode == OpCodes.Call && (MethodInfo)code.operand == OriginalQualityGenerator)
+                else if (code.opcode == OpCodes.Call && (MethodInfo)code.operand == OriginalQualityGenerator) //Replace vanilla code for creating quality with custom code
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Quality_Recipes), "get_SupplyQuality"));
@@ -68,7 +68,7 @@ namespace QualityFramework
             SupplyQuality = -1; //Reset before starting
             float value = -1;
             int numIng = 0;
-            if (ingredients != null && ModSettings_QFramework.useMaterialQuality)
+            if (ingredients != null && ModSettings_QEverything.useMaterialQuality)
             {
                 for (int i = 0; i < ingredients.Count; i++)
                 {
@@ -87,14 +87,14 @@ namespace QualityFramework
             }
             //Check for work table quality
             Building_WorkTable workTable = billGiver as Building_WorkTable;
-            if (workTable != null && ModSettings_QFramework.useTableQuality)
+            if (workTable != null && ModSettings_QEverything.useTableQuality)
             {
-                int tableValue = ModSettings_QFramework.minWorkQuality;
+                int tableValue = ModSettings_QEverything.minWorkQuality;
                 CompQuality tableQuality = workTable.TryGetComp<CompQuality>();
                 if (tableQuality != null) tableValue = (int)tableQuality.Quality;
                 //Log.Message("Table is quality " + tableValue);
                 if (numIng == 0) value = tableValue;
-                else value = value * (1 - ModSettings_QFramework.tableFactor) + tableValue * ModSettings_QFramework.tableFactor;
+                else value = value * (1 - ModSettings_QEverything.tableFactor) + tableValue * ModSettings_QEverything.tableFactor;
             }
             if (value >= 0)
             {
